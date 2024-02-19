@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles\index.css">
+    <link rel="stylesheet" href="../styles/index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kite+One&display=swap" rel="stylesheet">
@@ -11,20 +11,15 @@
 </head>
 <body>
     <main>
-        <div id="login-register">
-            <form id="login-container">
-                <h1>Weather Vision</h1>
-                <input type="text" placeholder="Email or username">
-                <input type="password" placeholder="Password">
-                <input type="submit" value="Log in" disabled>
-                <p id="error-msg">Your username/email and password are incorect</p>
-            </form>
-            <div id="register-container">
-                <p>Dont have an account? <a href="#">Sign up</a></p>
+        <div id="user-container">
+            <img src="../images/person.jpg">
+            <p id="welcome-msg">Welcome <span>Martin Georgiev</span></p>
+            <div id="user-info-container">
+                <p id="email-info">Email: <span>georgiev632@gmail.com</span></p>
+                <p id="phone-info">Phone number: <span>08953483435</span></p>
             </div>
+            <button id="log-out-button">Log out</button>
         </div>
-        
     </main>
-    <script type="module"></script>
 </body>
 </html>

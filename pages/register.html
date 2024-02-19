@@ -15,43 +15,57 @@
             <h1>Register</h1>
             <form>
                 <div class="form-group">
-                    <label for="">Username</label>
-                    <input type="text">
+                    <label for="username-input">Username</label>
+                    <input type="text" id="username-input">
                     <p class="error-msg"></p>
                 </div>
                 <div class="form-group">
-                    <label for="">First name</label>
-                    <input type="text">
+                    <label for="first-name-input">First name</label>
+                    <input type="text" id="first-name-input">
                     <p class="error-msg"></p>
                 </div>
                 <div class="form-group">
-                    <label for="">Last name</label>
-                    <input type="text">
+                    <label for="last-name-input">Last name</label>
+                    <input type="text" id="last-name-input">
                     <p class="error-msg"></p>
                 </div>
                 <div class="form-group">
-                    <label for="">Password</label>
-                    <input type="password">
+                    <label for="password-input">Password</label>
+                    <input type="password" id="password-input">
                     <p class="error-msg"></p>
                 </div>
                 <div class="form-group">
-                    <label for="">Confirm password</label>
-                    <input type="text">
+                    <label for="confirm-password-input">Confirm password</label>
+                    <input type="text" id="confirm-password-input">
                     <p class="error-msg"></p>
                 </div>
                 <div class="form-group">
-                    <label for="">Email</label>
-                    <input type="text">
+                    <label for="email-input">Email</label>
+                    <input type="text" id="email-input">
                     <p class="error-msg"></p>
                 </div>
                 <div class="form-group">
-                    <label for="">Confirm email</label>
-                    <input type="text">
+                    <label for="confirm-email-input">Confirm email</label>
+                    <input type="text" id="confirm-email-input">
                     <p class="error-msg"></p>
                 </div>
-                <input type="submit" value="Register" disabled>
+                <div class="form-group">
+                    <label for="gender-select">Gender</label>
+                    <select name="gender" id="gender-select">
+                        <option value="" selected disabled>Select an option</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="img-input">Select profile picture</label>
+                    <input type="file" id="img-input" name="img" accept="image/*">
+                </div>
+                <input type="submit" value="Register" id="register-input" disabled>
             </form>
         </div>
     </main>
+    <script src="../scripts/register.js" type="module"></script>
 </body>
 </html>

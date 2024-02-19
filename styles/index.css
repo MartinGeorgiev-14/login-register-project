@@ -1,16 +1,7 @@
 @import url("./base.css");
 
-#login-register{
+main #user-container{
     margin-top: 5rem;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Start login container */
-
-main #login-register #login-container{
     width: 20em;
     padding: 2rem;
     border: solid 1px;
@@ -20,52 +11,32 @@ main #login-register #login-container{
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+
 }
 
-main #login-register #login-container input{
-    font-size: 1.2rem;
-    padding: 0.2rem;
-    border: solid 1px;
-    border-color: var(--border);
-    border-radius: 2px;
-    outline: none;
-    width: 100%;
+main #user-container img{
+    width: 10em;
 }
 
-main #login-register #login-container input:focus{
-    border-color: var(--hover-border);
+main #user-container #user-info-container{
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
 }
 
-main #login-register #login-container input[type=submit]{
+main #user-container button{
     background-color: var(--main-color);
     width: 100%;
     border: none;
     color: white;
+    font-size: 1.2rem;
+    padding: 0.3rem;
+    border-radius: 2px;
 }
 
-main #login-register #login-container input:not([disabled])[type=submit]:hover{
-    background-color: var(--hover-color);
-    cursor: pointer;
+main #user-container button:hover{
+   cursor: pointer;
+   background-color: var(--hover-color);
 }
 
-main #login-register #login-container p{
-    display: none;
-    color: red;
-    font-weight: bold;
-}
-
-/* End Login container */
-
-/* Start of register container */
-
-main #register-container{
-    margin-top: 1rem;
-    border: 1px solid;
-    border-color: var(--border);
-    width: 20em;
-    text-align: center;
-    padding: 1rem 0;
-}
-
-
-/* End of register container */
