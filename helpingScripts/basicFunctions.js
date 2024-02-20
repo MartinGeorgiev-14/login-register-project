@@ -45,7 +45,19 @@ export function createBaseElement() {
         },
         getCertainElement(index){
             return this.elements[index]
-        }   
+        },
+       
+      
+    }
+
+    const querySelectorBase = {
+        getElement(){
+            return this.elements
+        },
+        forEachFnc(func){
+            this.element.forEach((element,index), func)
+        }
+      
     }
 
     //Functions for creating, getting and manipulating elements
@@ -65,6 +77,12 @@ export function createBaseElement() {
         querySelectorAll(condition) {
             return Object.assign(Object.create(querySelectorAllBase), {
                 elements: document.querySelectorAll(condition)
+            })
+        },
+
+        querySelector(condition){
+            return Object.assign(Object.create(querySelectorBase), {
+                elements: document.querySelector(condition)
             })
         }
 

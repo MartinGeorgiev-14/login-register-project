@@ -3,7 +3,8 @@ import * as call from "../scripts/calls.js"
 
 const elementManeger = basic.createBaseElement()
 
-const allFields = elementManeger.querySelectorAll("input, select")
+const allFields = elementManeger.querySelectorAll(`select, input:not([type="submit"])`)
+const form = elementManeger.querySelector("form")
 
 const userInput = elementManeger.getElementById("username-input")
 const firstNameInput = elementManeger.getElementById("first-name-input")
@@ -16,9 +17,20 @@ const genderSelect = elementManeger.getElementById("gender-select")
 const imgInput = elementManeger.getElementById("img-input")
 const registerInput = elementManeger.getElementById("register-input")
 
-registerInput.addEventListener("click", function(){
-    
+form.getElement().addEventListener("input", function(event){
+    let isAllFilled = true
 
+    allFields.getAllElements().forEach(element => {
+        if(!element.value){
+            isAllFilled = false
+        }
+    })
+ 
+    if(isAllFilled){
+        console.log("unlocked")
+    }else{
+        console.log("locked")
+    }
 })
 
 // const user = {
