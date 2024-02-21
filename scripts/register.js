@@ -1,12 +1,13 @@
 import * as basic from "../helpingScripts/basicFunctions.js"
 import * as call from "../scripts/calls.js"
+import * as specific from "../helpingScripts/appSpecific.js"
 
 const elementManeger = basic.createBaseElement()
 
 const allFields = elementManeger.querySelectorAll(`select, input:not([type="submit"])`)
 const form = elementManeger.querySelector("form")
 
-const userInput = elementManeger.getElementById("username-input")
+const usernameInput = elementManeger.getElementById("username-input")
 const firstNameInput = elementManeger.getElementById("first-name-input")
 const lastNameInput = elementManeger.getElementById("last-name-input")
 const passwordInput = elementManeger.getElementById("password-input")
@@ -17,19 +18,48 @@ const genderSelect = elementManeger.getElementById("gender-select")
 const imgInput = elementManeger.getElementById("img-input")
 const registerInput = elementManeger.getElementById("register-input")
 
-form.getElement().addEventListener("input", function(event){
+form.addEventListenerFnc("input", function(event){
     let isAllFilled = true
 
-    allFields.getAllElements().forEach(element => {
+    allFields.forEachFnc(function(element){
         if(!element.value){
             isAllFilled = false
         }
     })
  
     if(isAllFilled){
-        console.log("unlocked")
-    }else{
+        registerInput.removeAttribute("disabled")
+    }
+    else{
         console.log("locked")
+    }
+})
+
+registerInput.addEventListenerFnc("click", function(event){
+    event.preventDefault()
+    
+    let isAllCorrect = true
+    usernameInput.getNextCertainSibling("asd")
+    if(specific.checkForInvalidInput(usernameInput.getValue())){
+        console.error("wrong username characters")
+        specific.makeBorderRed(usernameInput.getElement())
+        isAllCorrect = false
+    }
+    else if(usernameInput.getLength() <= 3){
+        console.error("username error")
+        specific.makeBorderRed(usernameInput.getElement())
+        isAllCorrect = false
+    }
+    else{
+        console.log("username satisfied")
+        specific.makeBorderDefaultColor(usernameInput.getElement())
+    }
+
+    if(isAllCorrect){
+        console.log("registered")
+    }
+    else{
+        console.error("registration error")
     }
 })
 

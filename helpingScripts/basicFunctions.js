@@ -1,4 +1,5 @@
 
+const doc = document
 
 export function createBaseElement() {
     //Common functions for individual elements
@@ -27,14 +28,38 @@ export function createBaseElement() {
         setAttribute(attribute, value){
             this.element.setAttribute(attribute, value)
         },
+        removeAttribute(attribute){
+            this.element.removeAttribute(attribute)
+        },
         getValue(){
             return this.element.value
         },
         setValue(value){
             this.element.value = value
         },
-        addEventListener(event, func){
+        addEventListenerFnc(event, func){
             this.element.addEventListener(event, func)
+        },
+        getLength(){
+            return this.element.value.length
+        },
+        getNextSibling() {
+            let nextNode = this.element.nextSibling;
+
+            while (nextNode && nextNode.nodeType !== 1) {
+                nextNode = nextNode.nextSibling;
+            }
+
+            return nextNode
+        },
+        getNextCertainSibling(condition){
+            let nextNode = this.element.nextSibling
+
+            while (nextNode.className === "error-msg") {
+
+                nextNode = nextNode.nextSibling;
+            }
+            console.log(nextNode)
         }
     }
 
@@ -46,6 +71,14 @@ export function createBaseElement() {
         getCertainElement(index){
             return this.elements[index]
         },
+        forEachFnc(func){
+            this.elements.forEach(element => {
+                func(element);
+            });
+        },
+        addEventListenerFnc(event, func){
+            this.elements.addEventListener(event, func)
+        }
        
       
     }
@@ -55,7 +88,12 @@ export function createBaseElement() {
             return this.elements
         },
         forEachFnc(func){
-            this.element.forEach((element,index), func)
+            this.elements.forEach(element => {
+                func(element);
+            });
+        },
+        addEventListenerFnc(event, func){
+            this.elements.addEventListener(event, func)
         }
       
     }
@@ -64,25 +102,25 @@ export function createBaseElement() {
     return {
         createElement(tagName) {
             return Object.assign(Object.create(elementBase), {
-                element: document.createElement(tagName),
+                element: doc.createElement(tagName),
             });
         },
 
         getElementById(elementId) {
             return Object.assign(Object.create(elementBase), {
-                element: document.getElementById(elementId),
+                element: doc.getElementById(elementId),
             });
         },
 
         querySelectorAll(condition) {
             return Object.assign(Object.create(querySelectorAllBase), {
-                elements: document.querySelectorAll(condition)
+                elements: doc.querySelectorAll(condition)
             })
         },
 
         querySelector(condition){
             return Object.assign(Object.create(querySelectorBase), {
-                elements: document.querySelector(condition)
+                elements: doc.querySelector(condition)
             })
         }
 
