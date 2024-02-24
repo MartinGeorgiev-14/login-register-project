@@ -37,29 +37,53 @@ export function createBaseElement() {
         setValue(value){
             this.element.value = value
         },
+        getType(){
+            return this.element.type
+        },
         addEventListenerFnc(event, func){
             this.element.addEventListener(event, func)
         },
         getLength(){
             return this.element.value.length
         },
+        forEachFnc(func){
+            this.elements.forEach(element => {
+                func(element);
+            });
+        },
         getNextSibling() {
             let nextNode = this.element.nextSibling;
 
             while (nextNode && nextNode.nodeType !== 1) {
-                nextNode = nextNode.nextSibling;
+                nextNode = nextNode.nextSibling
             }
 
             return nextNode
         },
-        getNextCertainSibling(condition){
+        getNextSiblingById(condition){
             let nextNode = this.element.nextSibling
 
-            while (nextNode.className === "error-msg") {
+            while (!nextNode.className && nextNode.className !== condition) {
 
-                nextNode = nextNode.nextSibling;
+                nextNode = nextNode.nextSibling
+                
             }
-            console.log(nextNode)
+            
+            if(nextNode.className === condition){
+                return nextNode
+            }
+            else{
+                console.error("Searched sibling is not found")
+            }
+        },
+        getPreviousSibling(){
+            let previousNode = this.element.previousSibling
+
+            while(previousNode && previousNode.nodeType !== 1){
+                previousNode = previousNode.previousSibling
+            }
+
+            return previousNode
         }
     }
 
@@ -102,13 +126,13 @@ export function createBaseElement() {
     return {
         createElement(tagName) {
             return Object.assign(Object.create(elementBase), {
-                element: doc.createElement(tagName),
+                element: doc.createElement(tagName)
             });
         },
 
         getElementById(elementId) {
             return Object.assign(Object.create(elementBase), {
-                element: doc.getElementById(elementId),
+                element: doc.getElementById(elementId)
             });
         },
 
@@ -119,8 +143,8 @@ export function createBaseElement() {
         },
 
         querySelector(condition){
-            return Object.assign(Object.create(querySelectorBase), {
-                elements: doc.querySelector(condition)
+            return Object.assign(Object.create(elementBase), {
+                element: doc.querySelector(condition)
             })
         }
 

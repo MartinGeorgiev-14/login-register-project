@@ -4,7 +4,7 @@ import * as specific from "../helpingScripts/appSpecific.js"
 
 const elementManeger = basic.createBaseElement()
 
-const allFields = elementManeger.querySelectorAll(`select, input:not([type="submit"])`)
+const allFields = elementManeger.querySelectorAll(`select, input:not([type="submit"],[type="file"])`)
 const form = elementManeger.querySelector("form")
 
 const usernameInput = elementManeger.getElementById("username-input")
@@ -18,6 +18,8 @@ const genderSelect = elementManeger.getElementById("gender-select")
 const imgInput = elementManeger.getElementById("img-input")
 const registerInput = elementManeger.getElementById("register-input")
 
+console.log(allFields)
+
 form.addEventListenerFnc("input", function(event){
     let isAllFilled = true
 
@@ -28,38 +30,47 @@ form.addEventListenerFnc("input", function(event){
     })
  
     if(isAllFilled){
+        console.log("unlock")
         registerInput.removeAttribute("disabled")
-    }
-    else{
-        console.log("locked")
     }
 })
 
 registerInput.addEventListenerFnc("click", function(event){
     event.preventDefault()
     
-    let isAllCorrect = true
-    usernameInput.getNextCertainSibling("asd")
-    if(specific.checkForInvalidInput(usernameInput.getValue())){
-        console.error("wrong username characters")
-        specific.makeBorderRed(usernameInput.getElement())
-        isAllCorrect = false
-    }
-    else if(usernameInput.getLength() <= 3){
-        console.error("username error")
-        specific.makeBorderRed(usernameInput.getElement())
-        isAllCorrect = false
+    const selectedIndex = genderSelect.getElement().selectedIndex
+    const selectedGender = genderSelect.getElement().options[selectedIndex]
+    let imgSource
+    if(imgInput.getElement().files.length > 0){
+        imgSource = `images/` + imgInput.getElement().files[0].name
     }
     else{
-        console.log("username satisfied")
-        specific.makeBorderDefaultColor(usernameInput.getElement())
+        imgSource = "images/default.jpg"
     }
 
-    if(isAllCorrect){
-        console.log("registered")
-    }
-    else{
-        console.error("registration error")
+    let isAllCorrect = [
+        specific.checkInputTextRegistration(usernameInput),
+        specific.checkInputTextRegistration(firstNameInput),
+        specific.checkInputTextRegistration(lastNameInput),
+        specific.checkEmailOrPasswordInputs(passwordInput),
+        specific.checkEmailOrPasswordInputs(emailInput),
+        specific.areEqual(passwordInput, confirmPasswordInput),
+        specific.areEqual(emailInput, confirmEmailInput),
+        selectedIndex > 0 && selectedIndex <= 3
+    ]
+
+    if(!isAllCorrect.includes(false)){
+        const user = {
+            username: usernameInput.getValue(),
+            firstName: firstNameInput.getValue(),
+            lastName: lastNameInput.getValue(),
+            password: passwordInput.getValue(),
+            email: emailInput.getValue(),
+            gender: selectedGender.value,
+            img: imgSource
+        }
+
+        call.postUser(user)
     }
 })
 
