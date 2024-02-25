@@ -1,4 +1,30 @@
 {
   "users": [
+    {
+      "id": "d2e9",
+      "username": "sple",
+      "firstName": "masd",
+      "lastName": "asdkjnsdf",
+      "password": {
+        "hashedPassword": "68bb2173f195939dc0067bf375814ab0139f86fd0a1e2ca8302e34e32cb0c864",
+        "salt": "3f73449b9951983d6c242db9146ee2c3"
+      },
+      "email": "test@mail.com",
+      "gender": "Female",
+      "img": "images/default.jpg"
+    },
+    {
+      "id": "e1b5",
+      "username": "georgi_asd",
+      "firstName": "georgi",
+      "lastName": "stefanov",
+      "password": {
+        "hashedPassword": "63927e4f90dfd55a2fbdebdfd54de6904f4c5799a1b93e54acbc5742235ee690",
+        "salt": "ce10aa31d48744f96e80df0d3c0c35f8"
+      },
+      "email": "test@mail.com",
+      "gender": "Other",
+      "img": "images/motorcycle.jpeg"
+    }
   ]
 }

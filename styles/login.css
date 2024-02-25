@@ -48,7 +48,7 @@ main #login-register #login-container input:not([disabled])[type=submit]:hover{
     cursor: pointer;
 }
 
-main #login-register #login-container p{
+main #login-register #login-container #error-msg{
     display: none;
     color: red;
     font-weight: bold;

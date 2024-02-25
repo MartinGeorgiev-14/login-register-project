@@ -1,11 +1,11 @@
 
-
+import * as call from "../scripts/calls.js"
 //  /[0-9!@#$%^&*()_+{}\[\]:<>,.?~\\/\-=|]+/
 
 const errorRed = "rgb(255,51,51)"
 
 export function checkForInvalidInput(input){
-    return /[!@#$%^&*()+{}\[\]:<>,?~\\/\-=|]+/.test(input)
+    return /[!@#$%^&*()+{}\[\]:;<>,?~\\/\-=|]+/.test(input)
 }
 
 export function makeBorderRed(border){
@@ -167,4 +167,18 @@ export async function comparePasswordsWithSalt(inputPassword, hashedPassword, sa
     const hashArray = Array.from(new Uint8Array(hashBuffer))
     const inputHashedPassword = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('')
     return inputHashedPassword === hashedPassword
+}
+
+export async function checkCredentials(usernameEmail, password){
+    const allUsers = await call.getUsers()
+    
+    const findUser = allUsers.find(element => {
+        if(element.username === usernameEmail ||
+            element.email === usernameEmail &&
+            comparePasswordsWithSalt(password, element.hashedPassword, element.salt)){
+            return element
+        }
+    })
+
+    return findUser
 }

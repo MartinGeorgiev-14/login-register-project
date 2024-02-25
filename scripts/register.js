@@ -59,8 +59,6 @@ registerInput.addEventListenerFnc("click", async function(event){
 
     if(!isAllCorrect.includes(false)){
 
-       
-            
         const user = {
             username: usernameInput.getValue(),
             firstName: firstNameInput.getValue(),
@@ -68,10 +66,12 @@ registerInput.addEventListenerFnc("click", async function(event){
             password: await specific.hashPasswordWithSalt(passwordInput.getValue()),
             email: emailInput.getValue(),
             gender: selectedGender.value,
-            img: imgSource
+            img: imgSource,
+            role: "user"
         }
 
         call.postUser(user)
+        basic.changeWindow("../pages/login.html")
     }
 })
 

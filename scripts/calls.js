@@ -31,3 +31,21 @@ export async function postUser(obj, url = "http://localhost:3000/users"){
         console.error(error)
     }
 }
+
+export async function getUsers(url = "http://localhost:3000/users"){
+
+    try{
+    const response = await fetch(url)
+    const responseData = await response.json()
+
+    if(response.ok){
+        return responseData
+    }
+    else{
+        throw new Error(respones.statusText)
+    }
+    }
+    catch(error){
+        console.error(error)
+    }
+}

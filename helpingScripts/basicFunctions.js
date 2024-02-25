@@ -20,10 +20,13 @@ export function createBaseElement() {
             parent.append(this.element);
         },        
         changeColor(color){
-            this.element.style.color = color
+            this.setStyle("color", color)
         },
         setStyle(styleType, value){
             this.element.style[styleType] = value
+        },
+        changeDisplay(value){
+            this.setStyle("display", value)
         },
         setAttribute(attribute, value){
             this.element.setAttribute(attribute, value)
@@ -155,4 +158,8 @@ export function childRemover(parent){
     while(parent.firstChild){
         parent.removeChild(parent.firstChild)
     }
+}
+
+export function changeWindow(url){
+    window.location.href = url
 }
