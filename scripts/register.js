@@ -18,8 +18,6 @@ const genderSelect = elementManeger.getElementById("gender-select")
 const imgInput = elementManeger.getElementById("img-input")
 const registerInput = elementManeger.getElementById("register-input")
 
-console.log(allFields)
-
 form.addEventListenerFnc("input", function(event){
     let isAllFilled = true
 
@@ -35,7 +33,7 @@ form.addEventListenerFnc("input", function(event){
     }
 })
 
-registerInput.addEventListenerFnc("click", function(event){
+registerInput.addEventListenerFnc("click", async function(event){
     event.preventDefault()
     
     const selectedIndex = genderSelect.getElement().selectedIndex
@@ -60,11 +58,14 @@ registerInput.addEventListenerFnc("click", function(event){
     ]
 
     if(!isAllCorrect.includes(false)){
+
+       
+            
         const user = {
             username: usernameInput.getValue(),
             firstName: firstNameInput.getValue(),
             lastName: lastNameInput.getValue(),
-            password: passwordInput.getValue(),
+            password: await specific.hashPasswordWithSalt(passwordInput.getValue()),
             email: emailInput.getValue(),
             gender: selectedGender.value,
             img: imgSource
@@ -73,6 +74,7 @@ registerInput.addEventListenerFnc("click", function(event){
         call.postUser(user)
     }
 })
+
 
 // const user = {
 //     username: "SpleX",
