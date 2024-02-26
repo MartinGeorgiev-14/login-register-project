@@ -41,6 +41,7 @@ registerInput.addEventListenerFnc("click", async function(event){
     let imgSource
     if(imgInput.getElement().files.length > 0){
         imgSource = `images/` + imgInput.getElement().files[0].name
+        specific.handleFile(imgInput.getElement())
     }
     else{
         imgSource = "images/default.jpg"
@@ -71,7 +72,7 @@ registerInput.addEventListenerFnc("click", async function(event){
         }
 
         call.postUser(user)
-        basic.changeWindow("../pages/login.html")
+        //basic.changeWindow("../pages/login.html")
     }
 })
 

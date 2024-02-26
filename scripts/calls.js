@@ -1,3 +1,4 @@
+import * as specific from "../helpingScripts/appSpecific.js"
 
 export async function postUser(obj, url = "http://localhost:3000/users"){
     try {
@@ -9,7 +10,8 @@ export async function postUser(obj, url = "http://localhost:3000/users"){
             password: obj.password,
             email: obj.email,
             gender: obj.gender,
-            img: obj.img
+            img: obj.img,
+            role: obj.role
         }
 
         const response = await fetch(url, {

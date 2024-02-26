@@ -182,3 +182,41 @@ export async function checkCredentials(usernameEmail, password){
 
     return findUser
 }
+
+export function encrypt(text, key = "superKey"){
+    return [...text].map((x, i) => 
+    (x.codePointAt() ^ key.charCodeAt(i % key.length) % 255)
+     .toString(16)
+     .padStart(2,"0")
+   ).join('')
+}
+export function decrypt(text, key = "superKey"){
+    return String.fromCharCode(...text.match(/.{1,2}/g)
+     .map((e,i) => 
+       parseInt(e, 16) ^ key.charCodeAt(i % key.length) % 255)
+     )
+}
+
+export function setUser(userData, rememberMeBool){
+
+    delete userData.password
+    const encryptedData = (encrypt(JSON.stringify(userData)))
+
+    const date = new Date()
+    date.getDay() + 7
+ 
+    if(!rememberMeBool){
+        sessionStorage.setItem("activeUser", JSON.stringify({user: encryptedData}))
+    }
+    else{
+        localStorage.setItem("activeUser", JSON.stringify({user: encryptedData, expiry: date}))
+    }
+}
+
+export function handleFile(selectedFile){
+    const file = selectedFile.files[0]
+
+    let data = file.toDateURL("image/jpeg").split(',')[1]
+
+    console.log(data)
+}

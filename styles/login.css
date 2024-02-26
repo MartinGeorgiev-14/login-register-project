@@ -54,6 +54,17 @@ main #login-register #login-container #error-msg{
     font-weight: bold;
 }
 
+main #login-register #login-container #remember-checkbox-container input{
+    width: fit-content;
+}
+
+main #login-register #login-container #remember-checkbox-container{
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    width: 100%;
+    
+}
 /* End Login container */
 
 /* Start of register container */

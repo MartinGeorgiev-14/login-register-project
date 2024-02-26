@@ -5,11 +5,14 @@ import * as basic from "../helpingScripts/basicFunctions.js"
 const elementManeger = basic.createBaseElement()
 
 const form = elementManeger.getElementById("login-container")
-const inputs = elementManeger.querySelectorAll(`input:not([type="submit"]`)
+const inputs = elementManeger.querySelectorAll(`input:not([type="submit"], [type="checkbox"])`)
 const emailUsernameInput = elementManeger.getElementById("email-username-input")
 const passwordInput = elementManeger.getElementById("password-input")
 const logInInput = elementManeger.getElementById("log-in-input")
 const errorMsg = elementManeger.getElementById("error-msg")
+const rememberInput = elementManeger.getElementById("remember-checkbox")
+
+let rememberMeBool = false
 
 form.addEventListenerFnc("input", function(){
     let isAllFilled = true
@@ -22,6 +25,16 @@ form.addEventListenerFnc("input", function(){
 
     if(isAllFilled){
         logInInput.removeAttribute("disabled")
+    }
+   
+})
+
+rememberInput.addEventListenerFnc('change', function() {
+
+    if (rememberInput.getElement().checked) {
+        rememberMeBool = true
+    } else {
+        rememberMeBool = false
     }
 })
 
@@ -39,7 +52,7 @@ logInInput.addEventListenerFnc("click", async function(event){
     }
 
     if(user){
-        console.log(user)
+        specific.setUser(user, rememberMeBool)
     }
     else{
         errorMsg.changeDisplay("block")
