@@ -87,7 +87,15 @@ export function createBaseElement() {
             }
 
             return previousNode
-        }
+        },
+        getCertainElement(index){
+            return this.elements[index]
+        },
+        forEachFnc(func){
+            this.elements.forEach(element => {
+                func(element);
+            });
+        },
     }
 
     //Common functions for working with arrays
@@ -148,6 +156,12 @@ export function createBaseElement() {
         querySelector(condition){
             return Object.assign(Object.create(elementBase), {
                 element: doc.querySelector(condition)
+            })
+        },
+
+        convertElement(element){
+            return Object.assign(Object.create(elementBase), {
+                element: element
             })
         }
 

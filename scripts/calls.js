@@ -1,4 +1,7 @@
 import * as specific from "../helpingScripts/appSpecific.js"
+import * as basic from "../helpingScripts/basicFunctions.js"
+
+const elementManeger = basic.createBaseElement()
 
 export async function postUser(obj, url = "http://localhost:3000/users"){
     try {
@@ -34,13 +37,15 @@ export async function postUser(obj, url = "http://localhost:3000/users"){
     }
 }
 
-export async function getUsers(url = "http://localhost:3000/users"){
+export async function getFromDB(value){
+    const endpoint = `http://localhost:3000/${value}`
 
     try{
-    const response = await fetch(url)
+    const response = await fetch(endpoint)
     const responseData = await response.json()
 
     if(response.ok){
+        console.log(responseData)
         return responseData
     }
     else{

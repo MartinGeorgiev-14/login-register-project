@@ -81,3 +81,20 @@ main #register-container .form-group select:focus{
 
 }
 
+#img-group {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    
+}
+
+#img-group img{
+    border: transparent 2px solid;
+    border-radius: 3px;
+    width: 5rem;
+    height: 5rem;
+}
+
+#img-group img:hover{
+    cursor: pointer;
+    border-color: var(--main-color);
+}

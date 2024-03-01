@@ -1,4 +1,7 @@
 {
+  "profile":{
+    
+  },
   "users": [
     {
       "id": "20f6",
@@ -98,5 +101,28 @@
       "img": "images/default.jpg",
       "role": "user"
     }
+  ],
+  "avatars":[
+    {
+      "src": "images/default.jpg"
+    },
+    {
+      "src": "images/car.jpg"
+    },
+    {
+      "src": "images/game.jpg"
+    },
+    {
+      "src": "images/motorcycle.jpeg"
+    },
+    {
+      "src": "images/palms.jpg"
+    },
+    {
+      "src": "images/person.jpg"
+    }
   ]
+  
+  
+  
 }

@@ -17,6 +17,10 @@ export function makeBorderRed(border){
     focusBlurElement(border, "borderColor", def, focus)
 }
 
+export function changeBorderColor(border, color){
+    border.style.borderColor = color
+}
+
 export function makeBorderDefaultColor(border){
     const def = getComputedStyle(document.documentElement).getPropertyValue("--border")
     const focus = getComputedStyle(document.documentElement).getPropertyPriority("--hover-border")
@@ -170,7 +174,7 @@ export async function comparePasswordsWithSalt(inputPassword, hashedPassword, sa
 }
 
 export async function checkCredentials(usernameEmail, password){
-    const allUsers = await call.getUsers()
+    const allUsers = await call.getFromDB("users")
     
     const findUser = allUsers.find(element => {
         if(element.username === usernameEmail ||
@@ -179,7 +183,7 @@ export async function checkCredentials(usernameEmail, password){
             return element
         }
     })
-
+    console.log(findUser)
     return findUser
 }
 

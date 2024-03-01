@@ -15,8 +15,24 @@ const confirmPasswordInput = elementManeger.getElementById("confirm-password-inp
 const emailInput = elementManeger.getElementById("email-input")
 const confirmEmailInput = elementManeger.getElementById("confirm-email-input")
 const genderSelect = elementManeger.getElementById("gender-select")
-const imgInput = elementManeger.getElementById("img-input")
+const imgGroup = elementManeger.getElementById("img-group")
 const registerInput = elementManeger.getElementById("register-input")
+
+let imgSource
+
+window.onload = async function(){
+    await displayAllAvatars()
+}
+
+imgGroup.addEventListenerFnc("click", function(element){
+    
+    if(element.target.tagName === "IMG"){
+        imgSource = element.target.attributes[1].value
+        
+    }
+
+    
+})
 
 form.addEventListenerFnc("input", function(event){
     let isAllFilled = true
@@ -33,17 +49,15 @@ form.addEventListenerFnc("input", function(event){
     }
 })
 
+
+
 registerInput.addEventListenerFnc("click", async function(event){
     event.preventDefault()
     
     const selectedIndex = genderSelect.getElement().selectedIndex
     const selectedGender = genderSelect.getElement().options[selectedIndex]
-    let imgSource
-    if(imgInput.getElement().files.length > 0){
-        imgSource = `images/` + imgInput.getElement().files[0].name
-        specific.handleFile(imgInput.getElement())
-    }
-    else{
+    
+    if(!imgSource){
         imgSource = "images/default.jpg"
     }
 
@@ -75,6 +89,20 @@ registerInput.addEventListenerFnc("click", async function(event){
         //basic.changeWindow("../pages/login.html")
     }
 })
+
+async function displayAllAvatars(){
+    const avatars = await call.getFromDB("avatars")
+
+    avatars.forEach(element => {
+        const img = elementManeger.createElement("img")
+
+        img.setAttribute("src", `/${element.src}`)
+        img.setAttribute("value", `/${element.src}`)
+
+        img.appendTo(imgGroup.getElement())
+    })
+
+}
 
 
 // const user = {
