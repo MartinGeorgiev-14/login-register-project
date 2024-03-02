@@ -3,6 +3,7 @@ import * as basic from "../helpingScripts/basicFunctions.js"
 
 const elementManeger = basic.createBaseElement()
 
+//function that post a new user to the database
 export async function postUser(obj, url = "http://localhost:3000/users"){
     try {
         
@@ -37,6 +38,7 @@ export async function postUser(obj, url = "http://localhost:3000/users"){
     }
 }
 
+//function for getting information from the database
 export async function getFromDB(value){
     const endpoint = `http://localhost:3000/${value}`
 

@@ -107,8 +107,8 @@ export function createBaseElement() {
             return this.elements[index]
         },
         forEachFnc(func){
-            this.elements.forEach(element => {
-                func(element);
+            this.elements.forEach((element, index) => {
+                func(element, index);
             });
         },
         addEventListenerFnc(event, func){
@@ -117,22 +117,7 @@ export function createBaseElement() {
        
       
     }
-
-    const querySelectorBase = {
-        getElement(){
-            return this.elements
-        },
-        forEachFnc(func){
-            this.elements.forEach(element => {
-                func(element);
-            });
-        },
-        addEventListenerFnc(event, func){
-            this.elements.addEventListener(event, func)
-        }
-      
-    }
-
+    
     //Functions for creating, getting and manipulating elements
     return {
         createElement(tagName) {
@@ -153,6 +138,12 @@ export function createBaseElement() {
             })
         },
 
+        querySelectorParentAll(parent, condition){
+            return Object.assign(Object.create(querySelectorAllBase), {
+                elements: parent.querySelectorAll(condition)
+            })
+        },
+
         querySelector(condition){
             return Object.assign(Object.create(elementBase), {
                 element: doc.querySelector(condition)
@@ -169,11 +160,27 @@ export function createBaseElement() {
 }
 //Functions that removes all child elements out of a parent element
 export function childRemover(parent){
-    while(parent.firstChild){
+    while(parent.childs){
         parent.removeChild(parent.firstChild)
     }
 }
 
 export function changeWindow(url){
     window.location.href = url
+}
+
+export function styleChanger(query, value){
+
+    query.forEach(element => {
+        element.style.borderColor = ""
+  
+    })
+}
+
+//function that removes all classes of given nodeList
+export function classRemover(query, elClass){
+    console.log(query)
+    query.forEach(element => {
+        element.classList.remove(elClass)
+    });
 }

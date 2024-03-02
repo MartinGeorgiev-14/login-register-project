@@ -4,23 +4,29 @@ import * as call from "../scripts/calls.js"
 
 const errorRed = "rgb(255,51,51)"
 
+//Function that checks if input match the condition
 export function checkForInvalidInput(input){
     return /[!@#$%^&*()+{}\[\]:;<>,?~\\/\-=|]+/.test(input)
 }
 
-export function makeBorderRed(border){
+//function that changes the element's border color to red
+//sets focus effect to the border
+export function makeBorderRed(element){
     const def = errorRed
     const focus = "rgb(215, 2, 2)"
 
-    border.style.borderColor = def
+    element.style.borderColor = def
 
-    focusBlurElement(border, "borderColor", def, focus)
+    focusBlurElement(element, "borderColor", def, focus)
 }
 
-export function changeBorderColor(border, color){
-    border.style.borderColor = color
+//Function that changes border's color
+export function changeBorderColor(element, color){
+    element.style.borderColor = color
 }
 
+//function that sets border's color to the default one
+//sets foucs effect to the border back to the default one
 export function makeBorderDefaultColor(border){
     const def = getComputedStyle(document.documentElement).getPropertyValue("--border")
     const focus = getComputedStyle(document.documentElement).getPropertyPriority("--hover-border")
@@ -30,17 +36,20 @@ export function makeBorderDefaultColor(border){
     focusBlurElement(border, "borderColor", def, focus)
 }
 
+//function that sets text, color and displays error message
 export function displayErrorMsg(element, msg){
     const color = errorRed
     element.style.display = "block"
     element.innerHTML = msg
 }
 
+//function that removes error message
 export function removeErrorMsg(element){
     element.style.display = "none"
     element.innerHTML = ""
 }
 
+// function that adds focus and blur effects to an element
 function focusBlurElement(element, property, defaultColor, focusColor){
     element.addEventListener("focus", function(){
         element.style[property] = focusColor
@@ -50,6 +59,7 @@ function focusBlurElement(element, property, defaultColor, focusColor){
     })
 }
 
+// Function that checks for entered information in inputs/ displays error messages/ returns bool
 export function checkInputTextRegistration(element){
 
     const value = element.getValue()
@@ -79,6 +89,7 @@ export function checkInputTextRegistration(element){
     }
 }
 
+// Function that checks for entered information in inputs/ displays error messages/ returns bool
 export function checkEmailOrPasswordInputs(element){
 
     let checkFunction
@@ -111,15 +122,16 @@ export function checkEmailOrPasswordInputs(element){
         return true
     }
 }
-
+//Function that checks if input match the condition
 export function checkEmail(email){
     return /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email.getValue())
 }
-
+//Function that checks if input match the condition
 export function checkPassword(password){
     return /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\[\]:<>,.?~\\/-]).+$/.test(password.getValue())
 }
 
+// function that checks if two input values are equal/ displays error messages/ returns bool
 export function areEqual(inputOne, inputTwo){
 
     const label = inputOne.getPreviousSibling().innerHTML.toLowerCase()
@@ -163,7 +175,7 @@ export async function hashPasswordWithSalt(password) {
     return { hashedPassword, salt }
 }
 
-// Password Comparison Function with Salting (same as before)
+// Password Comparison Function with Salting 
 export async function comparePasswordsWithSalt(inputPassword, hashedPassword, salt) {
     const encoder = new TextEncoder()
     const data = encoder.encode(inputPassword + salt)
@@ -173,6 +185,7 @@ export async function comparePasswordsWithSalt(inputPassword, hashedPassword, sa
     return inputHashedPassword === hashedPassword
 }
 
+//Function that checks given information if is found in the database
 export async function checkCredentials(usernameEmail, password){
     const allUsers = await call.getFromDB("users")
     
@@ -183,10 +196,11 @@ export async function checkCredentials(usernameEmail, password){
             return element
         }
     })
-    console.log(findUser)
     return findUser
 }
 
+
+//functions for encrypting and decrypting user information
 export function encrypt(text, key = "superKey"){
     return [...text].map((x, i) => 
     (x.codePointAt() ^ key.charCodeAt(i % key.length) % 255)
@@ -201,6 +215,7 @@ export function decrypt(text, key = "superKey"){
      )
 }
 
+// function that sets user to local or session storage based in remeber me checkbox is ticked
 export function setUser(userData, rememberMeBool){
 
     delete userData.password
@@ -215,12 +230,4 @@ export function setUser(userData, rememberMeBool){
     else{
         localStorage.setItem("activeUser", JSON.stringify({user: encryptedData, expiry: date}))
     }
-}
-
-export function handleFile(selectedFile){
-    const file = selectedFile.files[0]
-
-    let data = file.toDateURL("image/jpeg").split(',')[1]
-
-    console.log(data)
 }

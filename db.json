@@ -1,7 +1,5 @@
 {
-  "profile":{
-    
-  },
+  "profile": {},
   "users": [
     {
       "id": "20f6",
@@ -100,29 +98,46 @@
       "gender": "Other",
       "img": "images/default.jpg",
       "role": "user"
+    },
+    {
+      "id": "4b63",
+      "username": "asdasd",
+      "firstName": "Martin",
+      "lastName": "Georgiev",
+      "password": {
+        "hashedPassword": "d25a7a8e402872acfd7566c6c57a8137a00c5d847b78cb32040686ec274d18d0",
+        "salt": "707300958485815afe8f23e3eed389a1"
+      },
+      "email": "martin_georgiev02@abv.bg",
+      "gender": "Female",
+      "img": "/images/car.jpg",
+      "role": "user"
     }
   ],
-  "avatars":[
+  "avatars": [
     {
-      "src": "images/default.jpg"
+      "src": "images/default.jpg",
+      "id": "a4b0"
     },
     {
-      "src": "images/car.jpg"
+      "src": "images/car.jpg",
+      "id": "76da"
     },
     {
-      "src": "images/game.jpg"
+      "src": "images/game.jpg",
+      "id": "fca2"
     },
     {
-      "src": "images/motorcycle.jpeg"
+      "src": "images/motorcycle.jpeg",
+      "id": "ee20"
     },
     {
-      "src": "images/palms.jpg"
+      "src": "images/palms.jpg",
+      "id": "188f"
     },
     {
-      "src": "images/person.jpg"
+      "src": "images/person.jpg",
+      "id": "f0f0"
     }
   ]
-  
-  
-  
 }

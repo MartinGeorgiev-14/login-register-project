@@ -11,9 +11,10 @@ const passwordInput = elementManeger.getElementById("password-input")
 const logInInput = elementManeger.getElementById("log-in-input")
 const errorMsg = elementManeger.getElementById("error-msg")
 const rememberInput = elementManeger.getElementById("remember-checkbox")
-
+// variable for checking if user is remembered for next login
 let rememberMeBool = false
 
+// eventListener for checking if all inputs fields are e entered
 form.addEventListenerFnc("input", function(){
     let isAllFilled = true
 
@@ -22,13 +23,14 @@ form.addEventListenerFnc("input", function(){
             isAllFilled = false
         }
     })
-
+// removes the disabled attribute out of the log in input
     if(isAllFilled){
         logInInput.removeAttribute("disabled")
     }
    
 })
 
+// eventListener that changes value based on ticked remember me box
 rememberInput.addEventListenerFnc('change', function() {
 
     if (rememberInput.getElement().checked) {
@@ -38,10 +40,11 @@ rememberInput.addEventListenerFnc('change', function() {
     }
 })
 
+//eventListener that checks given username/password
 logInInput.addEventListenerFnc("click", async function(event){
     event.preventDefault()
     let user
-
+    //Validations that checks if given infomration is correctly given
     if(emailUsernameInput.getValue() && passwordInput.getValue()){
         user = await specific.checkCredentials(emailUsernameInput.getValue(), passwordInput.getValue())
         errorMsg.changeDisplay("none")
@@ -51,6 +54,7 @@ logInInput.addEventListenerFnc("click", async function(event){
         return
     }
 
+    //Validation if user is found 
     if(user){
         specific.setUser(user, rememberMeBool)
     }
