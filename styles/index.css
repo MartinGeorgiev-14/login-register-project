@@ -40,3 +40,19 @@ main #user-container button:hover{
    background-color: var(--hover-color);
 }
 
+main #admin-panel{
+    position: absolute;
+    background-color: var(--main-color);
+    color: white;
+    padding: 0.4rem;
+    border-radius: 0.2rem;
+    border: none;
+    right: 1rem;
+    top: 1rem;
+}
+
+main #admin-panel:hover{
+    background-color: var(--hover-color);
+    cursor: pointer;
+}
+

@@ -1,5 +1,4 @@
 {
-  "profile": {},
   "users": [
     {
       "id": "20f6",
@@ -26,7 +25,7 @@
       },
       "email": "martin@weathervision.com",
       "gender": "Male",
-      "img": "images/car.webp",
+      "img": "images/car.jpg",
       "role": "admin"
     },
     {
@@ -112,6 +111,20 @@
       "gender": "Female",
       "img": "/images/car.jpg",
       "role": "user"
+    },
+    {
+      "id": "921b",
+      "username": "admin",
+      "firstName": "admin",
+      "lastName": "admin",
+      "password": {
+        "hashedPassword": "49df5f94095440ea96fa1ea8109ff284b3599c475b8e8ed411bb248bc4659c3a",
+        "salt": "947efc3f19549f5873aaed8a2a71c06b"
+      },
+      "email": "admin@admin.com",
+      "gender": "Other",
+      "img": "images/default.jpg",
+      "role": "admin"
     }
   ],
   "avatars": [

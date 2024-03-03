@@ -10,6 +10,9 @@ export function createBaseElement() {
         addClass(val) {
             this.element.classList.add(val);
         },
+        setID(id){
+            this.setAttribute("id", id)
+        },
         removeClass(val) {
             this.element.classList.remove(val);
         },

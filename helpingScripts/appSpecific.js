@@ -1,17 +1,18 @@
 
 import * as call from "../scripts/calls.js"
+import * as basic from "./basicFunctions.js"
 //  /[0-9!@#$%^&*()_+{}\[\]:<>,.?~\\/\-=|]+/
 
 const errorRed = "rgb(255,51,51)"
 
 //Function that checks if input match the condition
-export function checkForInvalidInput(input){
+export function checkForInvalidInput(input) {
     return /[!@#$%^&*()+{}\[\]:;<>,?~\\/\-=|]+/.test(input)
 }
 
 //function that changes the element's border color to red
 //sets focus effect to the border
-export function makeBorderRed(element){
+export function makeBorderRed(element) {
     const def = errorRed
     const focus = "rgb(215, 2, 2)"
 
@@ -21,13 +22,13 @@ export function makeBorderRed(element){
 }
 
 //Function that changes border's color
-export function changeBorderColor(element, color){
+export function changeBorderColor(element, color) {
     element.style.borderColor = color
 }
 
 //function that sets border's color to the default one
 //sets foucs effect to the border back to the default one
-export function makeBorderDefaultColor(border){
+export function makeBorderDefaultColor(border) {
     const def = getComputedStyle(document.documentElement).getPropertyValue("--border")
     const focus = getComputedStyle(document.documentElement).getPropertyPriority("--hover-border")
 
@@ -37,52 +38,52 @@ export function makeBorderDefaultColor(border){
 }
 
 //function that sets text, color and displays error message
-export function displayErrorMsg(element, msg){
+export function displayErrorMsg(element, msg) {
     const color = errorRed
     element.style.display = "block"
     element.innerHTML = msg
 }
 
 //function that removes error message
-export function removeErrorMsg(element){
+export function removeErrorMsg(element) {
     element.style.display = "none"
     element.innerHTML = ""
 }
 
 // function that adds focus and blur effects to an element
-function focusBlurElement(element, property, defaultColor, focusColor){
-    element.addEventListener("focus", function(){
+function focusBlurElement(element, property, defaultColor, focusColor) {
+    element.addEventListener("focus", function () {
         element.style[property] = focusColor
     })
-    element.addEventListener("blur", function(){
+    element.addEventListener("blur", function () {
         element.style[property] = defaultColor
     })
 }
 
 // Function that checks for entered information in inputs/ displays error messages/ returns bool
-export function checkInputTextRegistration(element){
+export function checkInputTextRegistration(element) {
 
     const value = element.getValue()
     const el = element.getElement()
     const errorEl = element.getNextSiblingById("error-msg")
     const label = element.getPreviousSibling().innerHTML.toLowerCase()
-    
-    if(checkForInvalidInput(value)){
+
+    if (checkForInvalidInput(value)) {
         displayErrorMsg(errorEl, `Please enter your ${label} correctly.`)
         makeBorderRed(el)
         return false
     }
-    else if(element.getLength() === 0){
+    else if (element.getLength() === 0) {
         displayErrorMsg(errorEl, `Please enter your ${label}.`)
         makeBorderRed(el)
         return false
     }
-    else if(element.getLength() <= 3){
+    else if (element.getLength() <= 3) {
         displayErrorMsg(errorEl, `Please enter longer ${label}.`)
         makeBorderRed(el)
         return false
     }
-    else{
+    else {
         makeBorderDefaultColor(el)
         removeErrorMsg(errorEl)
         return true
@@ -90,7 +91,7 @@ export function checkInputTextRegistration(element){
 }
 
 // Function that checks for entered information in inputs/ displays error messages/ returns bool
-export function checkEmailOrPasswordInputs(element){
+export function checkEmailOrPasswordInputs(element) {
 
     let checkFunction
     const type = element.getType()
@@ -98,58 +99,58 @@ export function checkEmailOrPasswordInputs(element){
     const el = element.getElement()
     const errorEl = element.getNextSiblingById("error-msg")
 
-    if(type === "email"){
+    if (type === "email") {
         checkFunction = checkEmail
     }
-    else{
+    else {
         checkFunction = checkPassword
-        if(length <= 8){
+        if (length <= 8) {
             displayErrorMsg(errorEl, `Your password must be above 8 characters`)
             makeBorderRed(el)
             return false
         }
     }
 
-    
-    if(!checkFunction(element)){
+
+    if (!checkFunction(element)) {
         displayErrorMsg(errorEl, `Please enter your ${type}.`)
         makeBorderRed(el)
         return false
     }
-    else{
+    else {
         makeBorderDefaultColor(el)
         removeErrorMsg(errorEl)
         return true
     }
 }
 //Function that checks if input match the condition
-export function checkEmail(email){
+export function checkEmail(email) {
     return /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email.getValue())
 }
 //Function that checks if input match the condition
-export function checkPassword(password){
+export function checkPassword(password) {
     return /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\[\]:<>,.?~\\/-]).+$/.test(password.getValue())
 }
 
 // function that checks if two input values are equal/ displays error messages/ returns bool
-export function areEqual(inputOne, inputTwo){
+export function areEqual(inputOne, inputTwo) {
 
     const label = inputOne.getPreviousSibling().innerHTML.toLowerCase()
     const lengthTwo = inputTwo.getLength()
-    const errorElTwo = inputTwo.getNextSiblingById("error-msg") 
+    const errorElTwo = inputTwo.getNextSiblingById("error-msg")
     const elTwo = inputTwo.getElement()
-    
-    if(lengthTwo === 0){
+
+    if (lengthTwo === 0) {
         displayErrorMsg(errorElTwo, `Please confirm your ${label}.`)
         makeBorderRed(elTwo)
-        return false 
+        return false
     }
-    else if(inputOne.getValue() !== inputTwo.getValue()){
+    else if (inputOne.getValue() !== inputTwo.getValue()) {
         displayErrorMsg(errorElTwo, `Entered ${label} is not correct.`)
         makeBorderRed(elTwo)
         return false
     }
-    else{
+    else {
         makeBorderDefaultColor(elTwo)
         removeErrorMsg(errorElTwo)
         return true
@@ -186,48 +187,62 @@ export async function comparePasswordsWithSalt(inputPassword, hashedPassword, sa
 }
 
 //Function that checks given information if is found in the database
-export async function checkCredentials(usernameEmail, password){
+export async function checkCredentials(usernameEmail, password) {
     const allUsers = await call.getFromDB("users")
-    
-    const findUser = allUsers.find(element => {
-        if(element.username === usernameEmail ||
-            element.email === usernameEmail &&
-            comparePasswordsWithSalt(password, element.hashedPassword, element.salt)){
+    let findUser
+
+    for (const element of allUsers) {
+
+        const compare = await comparePasswordsWithSalt(password, element.password.hashedPassword, element.password.salt)
+        if ((element.username === usernameEmail ||
+            element.email === usernameEmail) && compare) {
+
             return element
         }
-    })
-    return findUser
+    }
+   
 }
 
 
 //functions for encrypting and decrypting user information
-export function encrypt(text, key = "superKey"){
-    return [...text].map((x, i) => 
-    (x.codePointAt() ^ key.charCodeAt(i % key.length) % 255)
-     .toString(16)
-     .padStart(2,"0")
-   ).join('')
+export function encrypt(text, key = "superKey") {
+    return [...text].map((x, i) =>
+        (x.codePointAt() ^ key.charCodeAt(i % key.length) % 255)
+            .toString(16)
+            .padStart(2, "0")
+    ).join('')
 }
-export function decrypt(text, key = "superKey"){
+export function decrypt(text, key = "superKey") {
     return String.fromCharCode(...text.match(/.{1,2}/g)
-     .map((e,i) => 
-       parseInt(e, 16) ^ key.charCodeAt(i % key.length) % 255)
-     )
+        .map((e, i) =>
+            parseInt(e, 16) ^ key.charCodeAt(i % key.length) % 255)
+    )
 }
 
 // function that sets user to local or session storage based in remeber me checkbox is ticked
-export function setUser(userData, rememberMeBool){
+export function setUser(userData, rememberMeBool) {
 
     delete userData.password
     const encryptedData = (encrypt(JSON.stringify(userData)))
 
     const date = new Date()
     date.getDay() + 7
- 
-    if(!rememberMeBool){
-        sessionStorage.setItem("activeUser", JSON.stringify({user: encryptedData}))
+
+    if (!rememberMeBool) {
+        sessionStorage.setItem("activeUser", JSON.stringify({ user: encryptedData }))
     }
-    else{
-        localStorage.setItem("activeUser", JSON.stringify({user: encryptedData, expiry: date}))
+    else {
+        localStorage.setItem("activeUser", JSON.stringify({ user: encryptedData, expiry: date }))
     }
+}
+
+export function logOutUser() {
+
+    if (localStorage.getItem("activeUser")) {
+        localStorage.removeItem("activeUser")
+    } else {
+        sessionStorage.removeItem("activeUser")
+    }
+
+    basic.changeWindow("../pages/login.html")
 }

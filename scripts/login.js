@@ -2,6 +2,13 @@ import * as call from "../scripts/calls.js"
 import * as specific from "../helpingScripts/appSpecific.js"
 import * as basic from "../helpingScripts/basicFunctions.js"
 
+const session = JSON.parse(sessionStorage.getItem("activeUser"))
+const local = JSON.parse(localStorage.getItem("activeUser"))
+
+if(session || local){
+    basic.changeWindow("../index.html")
+}
+
 const elementManeger = basic.createBaseElement()
 
 const form = elementManeger.getElementById("login-container")
@@ -57,10 +64,9 @@ logInInput.addEventListenerFnc("click", async function(event){
     //Validation if user is found 
     if(user){
         specific.setUser(user, rememberMeBool)
+        basic.changeWindow("../index.html")
     }
     else{
         errorMsg.changeDisplay("block")
     }
-
-   
 })
