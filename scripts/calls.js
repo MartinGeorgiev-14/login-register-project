@@ -15,7 +15,9 @@ export async function postUser(obj, url = "http://localhost:3000/users"){
             email: obj.email,
             gender: obj.gender,
             img: obj.img,
-            role: obj.role
+            role: obj.role,
+            createdOn: obj.createdOn,
+            editHistory: obj.editHistory
         }
 
         const response = await fetch(url, {
@@ -27,7 +29,7 @@ export async function postUser(obj, url = "http://localhost:3000/users"){
         })
 
         if (response.ok){
-            alert("You have succesfully registered")
+            
         }
         else{
             throw new Error(response.statusText)
@@ -47,7 +49,6 @@ export async function getFromDB(value){
     const responseData = await response.json()
 
     if(response.ok){
-        console.log(responseData)
         return responseData
     }
     else{

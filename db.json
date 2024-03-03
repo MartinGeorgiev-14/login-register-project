@@ -1,130 +1,36 @@
 {
   "users": [
     {
-      "id": "20f6",
-      "username": "user",
-      "firstName": "georgi",
-      "lastName": "Georgiev",
-      "password": {
-        "hashedPassword": "3a54f283bc4d3c7a784aea2b0bfc6e3bb7e99e6246c93505d864af01bb78630e",
-        "salt": "7c2ccae872e0c9a4d0321e919d18b648"
-      },
-      "email": "test@mail.com",
-      "gender": "Male",
-      "img": "images/default.jpg",
-      "role": "user"
-    },
-    {
-      "id": "429c",
-      "username": "MartinAdmin",
-      "firstName": "Martin",
-      "lastName": "Georgiev",
-      "password": {
-        "hashedPassword": "6c4c29ddb11fe0b928e887dfa3cc98c022e02b2f028cdd9ffd1969d0f41651bd",
-        "salt": "a050be737772dd4aa8f47868408992f6"
-      },
-      "email": "martin@weathervision.com",
-      "gender": "Male",
-      "img": "images/car.jpg",
-      "role": "admin"
-    },
-    {
-      "id": "ebc0",
-      "username": "asdasd",
-      "firstName": "1123123",
-      "lastName": "Georgiev",
-      "password": {
-        "hashedPassword": "7695dd6f6eaa3cc2ca1150e48a6ee4ebf42273b2120e67aafcb6fef06187c92a",
-        "salt": "80683c6e5d383957f60a8614ac5c0806"
-      },
-      "email": "test@mail.com",
-      "gender": "Other",
-      "img": "images/default.jpg",
-      "role": "user"
-    },
-    {
-      "id": "b0a5",
-      "username": "asdasd",
-      "firstName": "Martin",
-      "lastName": "Georgiev",
-      "password": {
-        "hashedPassword": "53cd262ca062abcd87e792d88ac8e7cb671c190ebdb119f8d07ce822d349a49f",
-        "salt": "0e9b9f056fd2844da018d2ed5712572c"
-      },
-      "email": "test@mail.com",
-      "gender": "Male",
-      "img": "images/person.jpg",
-      "role": "user"
-    },
-    {
-      "id": "a62e",
-      "username": "user",
-      "firstName": "Martin",
-      "lastName": "Georgiev",
-      "password": {
-        "hashedPassword": "fad0e775d4c56dbab9176e70872ed5580d87b20e1ff949e9b81756b57b4ba66c",
-        "salt": "6e7b09f6e6cf17b4672dc42cc6888fa7"
-      },
-      "email": "martin_georgiev02@abv.bg",
-      "gender": "Female",
-      "img": "images/palms.jpg",
-      "role": "user"
-    },
-    {
-      "id": "e86d",
-      "username": "asfsdfsadfas",
-      "firstName": "dfasdfasdfasdf",
-      "lastName": "asdfasdfasdfasdfas",
-      "password": {
-        "hashedPassword": "150c9f7d6fd6dde27a61014ee368ce8a56df670b42ba81a1ce71f2dfcf8d7b34",
-        "salt": "551ab6881010fb3dd903b63e21e7873a"
-      },
-      "email": "martin_georgiev02@abv.bg",
-      "gender": "Male",
-      "img": "images/game.jpg",
-      "role": "user"
-    },
-    {
-      "id": "4501",
-      "username": "asdasd",
-      "firstName": "Martin",
-      "lastName": "Georgiev",
-      "password": {
-        "hashedPassword": "5912ebc868b7d7baff79680f931ae93901ac9604ccd55143989a5fce992dee24",
-        "salt": "57c20727239caaa22dd3b78d72112020"
-      },
-      "email": "martin_georgiev02@abv.bg",
-      "gender": "Other",
-      "img": "images/default.jpg",
-      "role": "user"
-    },
-    {
-      "id": "4b63",
-      "username": "asdasd",
-      "firstName": "Martin",
-      "lastName": "Georgiev",
-      "password": {
-        "hashedPassword": "d25a7a8e402872acfd7566c6c57a8137a00c5d847b78cb32040686ec274d18d0",
-        "salt": "707300958485815afe8f23e3eed389a1"
-      },
-      "email": "martin_georgiev02@abv.bg",
-      "gender": "Female",
-      "img": "/images/car.jpg",
-      "role": "user"
-    },
-    {
-      "id": "921b",
+      "id": "d44a",
       "username": "admin",
-      "firstName": "admin",
-      "lastName": "admin",
+      "firstName": "adminFirstname",
+      "lastName": "adminLastname",
       "password": {
-        "hashedPassword": "49df5f94095440ea96fa1ea8109ff284b3599c475b8e8ed411bb248bc4659c3a",
-        "salt": "947efc3f19549f5873aaed8a2a71c06b"
+        "hashedPassword": "558045fc7a3c3f5d366970ac2ce1941d302846310e47348f23500204bea4b80a",
+        "salt": "f61dcecc75e56eae132e7334fcadd3e5"
       },
       "email": "admin@admin.com",
-      "gender": "Other",
-      "img": "images/default.jpg",
-      "role": "admin"
+      "gender": "Male",
+      "img": "/images/default.jpg",
+      "role": "user",
+      "createdOn": "03/02/2024 19:37:14",
+      "editHistory": []
+    },
+    {
+      "id": "e5eb",
+      "username": "user",
+      "firstName": "Martin",
+      "lastName": "Georgiev",
+      "password": {
+        "hashedPassword": "48d12e07104b7ed4aefd63f5cc7b242c31e240719ea61c0068b91d332e2ec767",
+        "salt": "4855f614f3c970b9a64649a15f21f2ec"
+      },
+      "email": "martin_georgiev02@abv.bg",
+      "gender": "Male",
+      "img": "/images/motorcycle.jpeg",
+      "role": "user",
+      "createdOn": "03/02/2024 19:38:17",
+      "editHistory": []
     }
   ],
   "avatars": [

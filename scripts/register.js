@@ -71,11 +71,11 @@ registerInput.addEventListenerFnc("click", async function(event){
 
     //Array that contains bools from validations 
     let isAllCorrect = [
-        specific.checkInputTextRegistration(usernameInput),
+        await specific.checkIndividualInfo(usernameInput, "username"),
         specific.checkInputTextRegistration(firstNameInput),
         specific.checkInputTextRegistration(lastNameInput),
         specific.checkEmailOrPasswordInputs(passwordInput),
-        specific.checkEmailOrPasswordInputs(emailInput),
+        await specific.checkIndividualInfo(emailInput, "email"),
         specific.areEqual(passwordInput, confirmPasswordInput),
         specific.areEqual(emailInput, confirmEmailInput),
         selectedIndex > 0 && selectedIndex <= 3
@@ -92,11 +92,13 @@ registerInput.addEventListenerFnc("click", async function(event){
             email: emailInput.getValue(),
             gender: selectedGender.value,
             img: imgSource,
-            role: "user"
+            role: "user",
+            createdOn: specific.getDateNow(),
+            editHistory: []
         }
 
-        call.postUser(user)
-        basic.changeWindow("../pages/login.html")
+        // call.postUser(user)
+        // basic.changeWindow("../pages/login.html")
     }
 })
 

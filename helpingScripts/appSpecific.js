@@ -90,6 +90,37 @@ export function checkInputTextRegistration(element) {
     }
 }
 
+export async function checkIndividualInfo(element, type){
+
+    const value = element.getValue()
+    const el = element.getElement()
+    const errorEl = element.getNextSiblingById("error-msg")
+    const label = element.getPreviousSibling().innerHTML.toLowerCase()
+    const data = await call.getFromDB("users")
+
+    let isFound = false
+
+    data.forEach(element => {
+        if(element[type] === value){
+            isFound = true
+        }
+    });
+
+    if(isFound){
+        displayErrorMsg(errorEl, `This ${label} is already taken.`)
+        makeBorderRed(el)
+        return false
+    }
+
+    if(type === "username"){
+        return checkInputTextRegistration(element)
+    }
+    else{
+        return checkEmailOrPasswordInputs(element)
+    }
+    
+}
+
 // Function that checks for entered information in inputs/ displays error messages/ returns bool
 export function checkEmailOrPasswordInputs(element) {
 
@@ -245,4 +276,26 @@ export function logOutUser() {
     }
 
     basic.changeWindow("../pages/login.html")
+}
+
+export function getDateNow(){
+    const data = new Date()
+
+    const day = checkIfSingleDiggit(data.getDate())
+    const month = checkIfSingleDiggit(data.getMonth())
+    const year = data.getFullYear()
+    const hours = checkIfSingleDiggit(data.getHours())
+    const minutes = checkIfSingleDiggit(data.getMinutes())
+    const seconds = checkIfSingleDiggit(data.getSeconds())
+
+    return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`
+}
+
+function checkIfSingleDiggit(number){
+    if(number < 10){
+        return `0${number}`
+    }
+    else{
+        return number
+    }
 }
