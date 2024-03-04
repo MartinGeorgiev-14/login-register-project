@@ -97,8 +97,8 @@ registerInput.addEventListenerFnc("click", async function(event){
             editHistory: []
         }
 
-        // call.postUser(user)
-        // basic.changeWindow("../pages/login.html")
+        call.postUser(user)
+        basic.changeWindow("../pages/login.html")
     }
 })
 

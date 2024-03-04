@@ -1,5 +1,10 @@
 @import url("./base.css");
 
+main{
+    display: flex;
+    justify-content: center;
+}
+
 main #user-container{
     margin-top: 5rem;
     width: 20em;

@@ -1,6 +1,7 @@
 import * as specific from "../helpingScripts/appSpecific.js"
 import * as basic from "../helpingScripts/basicFunctions.js"
 
+
 const elementManager = basic.createBaseElement()
 
 //function that post a new user to the database
@@ -63,3 +64,28 @@ export async function getFromDB(value, func){
         console.error(error)
     }
 }
+
+export async function deleteUser(userId){
+    const url = `http://localhost:3000/users/${userId}`
+
+    try {
+        const response = await fetch(url, {
+            method: "DELETE",
+            headers:{
+                "Content-Type": "application/json",
+            }
+        })
+
+        if (response.ok){
+            alert("User has been deleted")
+        }
+        else{
+            throw new Error(response.statusText)
+        }
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+

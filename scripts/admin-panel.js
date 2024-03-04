@@ -3,12 +3,24 @@ import * as specific from "../helpingScripts/appSpecific.js"
 import * as call from "./calls.js"
 
 const elementManager = basic.createBaseElement()
+const user = await specific.isUserActive()
+
+const adminImg = elementManager.getElementById("admin-img")
+const adminUsername = elementManager.getElementById("admin-username")
+//Checks if the logged person is admin
+if(user.role !== "admin"){
+    basic.changeWindow("../index.html")
+}
+
 await call.getFromDB("users", displayUsers)
 
 function displayUsers(usersData){
     const table = elementManager.getElementById("users-container")
     const title = elementManager.getElementById("user-title")
-    
+
+    adminImg.setSrc(user.img)
+    adminUsername.setInnerHTML(user.username)
+
     basic.removeRowsExceptFirst(table.getElement())
 
     usersData.forEach(element => {
@@ -24,8 +36,8 @@ function displayUsers(usersData){
         const role = elementManager.createElement("p")
         const userActions = elementManager.createElement("td")
         const userActionsDiv = elementManager.createElement("div")
-        const edit = elementManager.createElement("p")
-        const remove = elementManager.createElement("p")
+        const edit = elementManager.createElement("button")
+        const remove = elementManager.createElement("button")
     
         userTableRow.addClass("user")
         userInfo.addClass("user-info")
@@ -33,13 +45,58 @@ function displayUsers(usersData){
         namesLi.addClass("thin")
         emailLi.addClass("thin")
         userRoles.addClass("user-roles")
-        role.addClass("role-user")
         userActions.addClass("user-actions")
         edit.addClass("edit")
         remove.addClass("remove")
         
+        //Validation if element is user or admin
+        if(element.role === "user"){
+            role.addClass("role-user")
+            edit.setInnerHTML(`<i class="fa-solid fa-gear"></i> Modify User`)
+        }
+        else if(element.role === "admin"){
+            role.addClass("role-admin")
+            remove.setDisabledAttribute()
+            edit.setInnerHTML(`<i class="fa-solid fa-gear"></i> See Info`)
+        }
 
-    
+        img.setSrc(element.img)
+        usernameLi.setInnerHTML(element.username)
+        namesLi.setInnerHTML(`${element.firstName} ${element.lastName}`)
+        emailLi.setInnerHTML(element.email)
+        role.setInnerHTML(element.role)
+        remove.setInnerHTML(`<i class="fa-solid fa-xmark"></i> Delete User`)
+
+        userTableRow.appendTo(table.getElement())
+        userInfo.appendTo(userTableRow.getElement())
+        img.appendTo(userInfo.getElement())
+        ul.appendTo(userInfo.getElement())
+        usernameLi.appendTo(ul.getElement())
+        namesLi.appendTo(ul.getElement())
+        emailLi.appendTo(ul.getElement())
+        userRoles.appendTo(userTableRow.getElement())
+        userRolesDiv.appendTo(userRoles.getElement())
+        role.appendTo(userRolesDiv.getElement())
+        userActions.appendTo(userTableRow.getElement())
+        userActionsDiv.appendTo(userActions.getElement())
+        edit.appendTo(userActionsDiv.getElement())
+        remove.appendTo(userActionsDiv.getElement())
+
+        remove.addEventListenerFnc("click", async function(){
+            if(user.role !== "admin"){
+                basic.changeWindow("../index.html")
+                return
+            }
+
+            if(element.role === "admin"){
+                alert("You can not delete other admins")
+                return
+            }
+
+            // await call.deleteUser(element.id)
+            // await call.getFromDB("users", displayUsers)
+        })
+
     });
 }
 

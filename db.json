@@ -1,35 +1,35 @@
 {
   "users": [
     {
-      "id": "d44a",
-      "username": "admin",
-      "firstName": "adminFirstname",
-      "lastName": "adminLastname",
-      "password": {
-        "hashedPassword": "558045fc7a3c3f5d366970ac2ce1941d302846310e47348f23500204bea4b80a",
-        "salt": "f61dcecc75e56eae132e7334fcadd3e5"
-      },
-      "email": "admin@admin.com",
-      "gender": "Male",
-      "img": "/images/default.jpg",
-      "role": "admin",
-      "createdOn": "03/02/2024 19:37:14",
-      "editHistory": []
-    },
-    {
-      "id": "e5eb",
-      "username": "user",
+      "id": "bcdd",
+      "username": "sdfgdsfgasdg",
       "firstName": "Martin",
       "lastName": "Georgiev",
       "password": {
-        "hashedPassword": "48d12e07104b7ed4aefd63f5cc7b242c31e240719ea61c0068b91d332e2ec767",
-        "salt": "4855f614f3c970b9a64649a15f21f2ec"
+        "hashedPassword": "d657f88686e0a99aea101f0ae57478745305a64f67e3e194783ad9aae69f18aa",
+        "salt": "50870003f78c070bc0ed48fe7089e018"
       },
-      "email": "martin_georgiev02@abv.bg",
-      "gender": "Male",
-      "img": "/images/motorcycle.jpeg",
+      "email": "test@mail.com",
+      "gender": "Female",
+      "img": "/images/car.jpg",
       "role": "user",
-      "createdOn": "03/02/2024 19:38:17",
+      "createdOn": "04/02/2024 22:51:26",
+      "editHistory": []
+    },
+    {
+      "id": "10c6",
+      "username": "admin",
+      "firstName": "marto",
+      "lastName": "admina",
+      "password": {
+        "hashedPassword": "93260bfc6af4beb70cb45a44683700b1de5bd44e2e90591008faea3a61ee5c13",
+        "salt": "17685f7fdabf198db22116276abdf4cb"
+      },
+      "email": "georgiev632@gmail.com",
+      "gender": "Male",
+      "img": "/images/game.jpg",
+      "role": "admin",
+      "createdOn": "04/02/2024 23:04:27",
       "editHistory": []
     }
   ],

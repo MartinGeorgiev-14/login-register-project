@@ -18,7 +18,8 @@ header{
 }
 
 header img{
-    width: 4rem;
+    height: 3.6rem;
+    width: 3.6rem;
     border-radius: 50%;
 }
 
@@ -97,6 +98,7 @@ main #users-container .user .user-info{
 }
 
 main #users-container .user .user-info img{
+    height: 5rem;
     width: 5rem;
     border-radius: 50%;
 }
@@ -135,6 +137,7 @@ main #users-container .user .user-roles p{
     color: white;
     background-color: green;
     border-radius: 45%;
+    
 }
 
 .role-admin{
@@ -152,12 +155,25 @@ main #users-container .user .user-actions div{
     gap: 1.2rem;
 }
 
-main #users-container .user .user-actions div p:hover{
-    cursor: pointer;
+main #users-container .user .user-actions div button{
+    border: none;
+    background-color: transparent;
+    font-size: 1rem;
 }
 
-main #users-container .user .user-actions div p:last-child:hover{
+main #users-container .user .user-actions div .edit:hover{
+    cursor: pointer;
+    color: var(--main-color);
+}
+
+main #users-container .user .user-actions div .remove:disabled{
+    color: gray;
+    cursor: not-allowed;
+}
+
+main #users-container .user .user-actions div .remove:not(:disabled):hover{
     color: red;
+    cursor: pointer;
 }
 
 

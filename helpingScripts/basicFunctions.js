@@ -34,6 +34,9 @@ export function createBaseElement() {
         setAttribute(attribute, value){
             this.element.setAttribute(attribute, value)
         },
+        setDisabledAttribute(){
+            this.setAttribute("disabled", "")
+        },
         removeAttribute(attribute){
             this.element.removeAttribute(attribute)
         },
@@ -192,7 +195,7 @@ export function classRemover(query, elClass){
 }
 
 export function removeRowsExceptFirst(table) {  
-       
+
     while (table.rows.length > 1) {
         table.deleteRow(1);
     } 
