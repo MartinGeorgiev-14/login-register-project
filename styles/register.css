@@ -1,4 +1,9 @@
 @import url("./base.css");
+main{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
 
 main #register-container{
    width: 20em;

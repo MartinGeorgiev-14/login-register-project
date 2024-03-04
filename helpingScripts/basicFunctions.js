@@ -99,6 +99,9 @@ export function createBaseElement() {
                 func(element);
             });
         },
+        setSrc(src){
+            this.element.src = src
+        }
     }
 
     //Common functions for working with arrays
@@ -163,7 +166,7 @@ export function createBaseElement() {
 }
 //Functions that removes all child elements out of a parent element
 export function childRemover(parent){
-    while(parent.childs){
+    while(parent.firstChild){
         parent.removeChild(parent.firstChild)
     }
 }
@@ -186,4 +189,11 @@ export function classRemover(query, elClass){
     query.forEach(element => {
         element.classList.remove(elClass)
     });
+}
+
+export function removeRowsExceptFirst(table) {  
+       
+    while (table.rows.length > 1) {
+        table.deleteRow(1);
+    } 
 }

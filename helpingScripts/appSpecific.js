@@ -253,17 +253,16 @@ export function decrypt(text, key = "superKey") {
 // function that sets user to local or session storage based in remeber me checkbox is ticked
 export function setUser(userData, rememberMeBool) {
 
-    delete userData.password
-    const encryptedData = (encrypt(JSON.stringify(userData)))
+    const idEncrypted = encrypt(userData.id)
 
     const date = new Date()
     date.getDay() + 7
 
     if (!rememberMeBool) {
-        sessionStorage.setItem("activeUser", JSON.stringify({ user: encryptedData }))
+        sessionStorage.setItem("activeUser", JSON.stringify({ user: idEncrypted }))
     }
     else {
-        localStorage.setItem("activeUser", JSON.stringify({ user: encryptedData, expiry: date }))
+        localStorage.setItem("activeUser", JSON.stringify({ user: idEncrypted, expiry: date }))
     }
 }
 
@@ -297,5 +296,31 @@ function checkIfSingleDiggit(number){
     }
     else{
         return number
+    }
+}
+
+export async function isUserActive(){
+    const session = JSON.parse(sessionStorage.getItem("activeUser"))
+    const local = JSON.parse(localStorage.getItem("activeUser"))
+    const today = new Date()
+ 
+
+    if(!session && !local){
+        basic.changeWindow("../pages/login.html")
+    }
+    else if(local){
+        
+        if(new Date(local.expiry) >= today){
+            logOutUser()
+        }
+        else{
+            const userId = await decrypt(local.user)
+            return await call.getFromDB(`users/${userId}`)
+        }
+            
+    }
+    else{
+        const userId = await decrypt(session.user)
+        return await call.getFromDB(`users/${userId}`)
     }
 }

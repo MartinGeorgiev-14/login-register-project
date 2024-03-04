@@ -1,1 +1,164 @@
 @import url("./base.css");
+
+main{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    margin-top: 3rem;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: var(--main-color);
+}
+
+header img{
+    width: 4rem;
+    border-radius: 50%;
+}
+
+header p{
+    color: white;
+    font-size: 1.2rem;
+}
+
+main #header-options{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 1rem;
+    align-items: center;
+    width: 80%;
+    height: 5%;
+    border: solid 1px var(--border);
+    border-top-left-radius: 0.4rem;
+    border-top-right-radius: 0.4rem;
+}
+
+/* Start of users containers */
+
+table{
+    border-collapse: collapse;
+}
+
+th{
+    border: solid 1px var(--border);
+    border-left: none;
+    border-right: none;
+}
+
+th:first-child{
+    border: solid 1px var(--border);
+    border-right: none;
+}
+
+th:last-child{
+    border: solid 1px var(--border);
+    border-left: none;
+}
+
+/* th{
+    border: solid 1px var(--border);
+
+} */
+
+main #users-container{
+    width: 80%;
+}
+
+main #users-container #user-title{
+    text-align: left;
+}
+
+#username-sort{
+    padding-left: 1rem;
+}
+
+main #users-container .user{
+    border-bottom: solid 1px var(--border);
+}
+
+main #users-container .user:hover{
+    background-color: rgb(229, 229, 229);
+}
+
+main #users-container .user td{
+    padding: 1rem 0;
+}
+
+main #users-container .user .user-info{
+    padding-left: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+main #users-container .user .user-info img{
+    width: 5rem;
+    border-radius: 50%;
+}
+
+main #users-container .user .user-info ul{
+    list-style: none;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.thin{
+    font-weight: lighter;
+    color: gray;
+}
+
+main #users-container .user .user-roles{
+    width: 20%;
+}
+
+main #users-container .user .user-roles div{
+    width: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2rem;
+    
+}
+
+main #users-container .user .user-roles p{
+   
+    padding: 0.4rem;
+}
+
+.role-user{
+    color: white;
+    background-color: green;
+    border-radius: 45%;
+}
+
+.role-admin{
+    color: white;
+    background-color: red;
+    border-radius: 45%;
+}
+
+main #users-container .user .user-actions{
+    width: 20%;
+}
+
+main #users-container .user .user-actions div{
+    display: flex;
+    gap: 1.2rem;
+}
+
+main #users-container .user .user-actions div p:hover{
+    cursor: pointer;
+}
+
+main #users-container .user .user-actions div p:last-child:hover{
+    color: red;
+}
+
+
+/* End of users containers */

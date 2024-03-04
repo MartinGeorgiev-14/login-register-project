@@ -1,7 +1,7 @@
 import * as specific from "../helpingScripts/appSpecific.js"
 import * as basic from "../helpingScripts/basicFunctions.js"
 
-const elementManeger = basic.createBaseElement()
+const elementManager = basic.createBaseElement()
 
 //function that post a new user to the database
 export async function postUser(obj, url = "http://localhost:3000/users"){
@@ -41,14 +41,18 @@ export async function postUser(obj, url = "http://localhost:3000/users"){
 }
 
 //function for getting information from the database
-export async function getFromDB(value){
+export async function getFromDB(value, func){
     const endpoint = `http://localhost:3000/${value}`
 
     try{
     const response = await fetch(endpoint)
     const responseData = await response.json()
 
-    if(response.ok){
+    
+    if(response.ok && func){
+        func(responseData)
+    }
+    else if(response.ok){
         return responseData
     }
     else{

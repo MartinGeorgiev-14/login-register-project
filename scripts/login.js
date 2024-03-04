@@ -9,15 +9,15 @@ if(session || local){
     basic.changeWindow("../index.html")
 }
 
-const elementManeger = basic.createBaseElement()
+const elementManager = basic.createBaseElement()
 
-const form = elementManeger.getElementById("login-container")
-const inputs = elementManeger.querySelectorAll(`input:not([type="submit"], [type="checkbox"])`)
-const emailUsernameInput = elementManeger.getElementById("email-username-input")
-const passwordInput = elementManeger.getElementById("password-input")
-const logInInput = elementManeger.getElementById("log-in-input")
-const errorMsg = elementManeger.getElementById("error-msg")
-const rememberInput = elementManeger.getElementById("remember-checkbox")
+const form = elementManager.getElementById("login-container")
+const inputs = elementManager.querySelectorAll(`input:not([type="submit"], [type="checkbox"])`)
+const emailUsernameInput = elementManager.getElementById("email-username-input")
+const passwordInput = elementManager.getElementById("password-input")
+const logInInput = elementManager.getElementById("log-in-input")
+const errorMsg = elementManager.getElementById("error-msg")
+const rememberInput = elementManager.getElementById("remember-checkbox")
 // variable for checking if user is remembered for next login
 let rememberMeBool = false
 

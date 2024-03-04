@@ -2,29 +2,29 @@ import * as basic from "../helpingScripts/basicFunctions.js"
 import * as call from "../scripts/calls.js"
 import * as specific from "../helpingScripts/appSpecific.js"
 
-const elementManeger = basic.createBaseElement()
+const elementManager = basic.createBaseElement()
 const mainColor = getComputedStyle(document.documentElement).getPropertyPriority("--main-color")
 
-const allFields = elementManeger.querySelectorAll(`select, input:not([type="submit"],[type="file"])`)
-const form = elementManeger.querySelector("form")
+const allFields = elementManager.querySelectorAll(`select, input:not([type="submit"],[type="file"])`)
+const form = elementManager.querySelector("form")
 
-const usernameInput = elementManeger.getElementById("username-input")
-const firstNameInput = elementManeger.getElementById("first-name-input")
-const lastNameInput = elementManeger.getElementById("last-name-input")
-const passwordInput = elementManeger.getElementById("password-input")
-const confirmPasswordInput = elementManeger.getElementById("confirm-password-input")
-const emailInput = elementManeger.getElementById("email-input")
-const confirmEmailInput = elementManeger.getElementById("confirm-email-input")
-const genderSelect = elementManeger.getElementById("gender-select")
-const imgGroup = elementManeger.getElementById("img-group")
-const registerInput = elementManeger.getElementById("register-input")
+const usernameInput = elementManager.getElementById("username-input")
+const firstNameInput = elementManager.getElementById("first-name-input")
+const lastNameInput = elementManager.getElementById("last-name-input")
+const passwordInput = elementManager.getElementById("password-input")
+const confirmPasswordInput = elementManager.getElementById("confirm-password-input")
+const emailInput = elementManager.getElementById("email-input")
+const confirmEmailInput = elementManager.getElementById("confirm-email-input")
+const genderSelect = elementManager.getElementById("gender-select")
+const imgGroup = elementManager.getElementById("img-group")
+const registerInput = elementManager.getElementById("register-input")
 
 // variable that stores avatar path
 let imgSource
 //calling function that displays all available avatars
 await displayAllAvatars() 
 
-const imagesQuery = elementManeger.querySelectorParentAll(imgGroup.getElement(), "img")
+const imagesQuery = elementManager.querySelectorParentAll(imgGroup.getElement(), "img")
 
 // eventListener that assigns path to imgSource and changes border color of clicked img
 imgGroup.addEventListenerFnc("click", function(element){
@@ -106,7 +106,7 @@ async function displayAllAvatars(){
     const avatars = await call.getFromDB("avatars")
 
     avatars.forEach(element => {
-        const img = elementManeger.createElement("img")
+        const img = elementManager.createElement("img")
 
         img.setAttribute("src", `/${element.src}`)
         img.setAttribute("value", `/${element.src}`)

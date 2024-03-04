@@ -1,39 +1,19 @@
 import * as basic from "../helpingScripts/basicFunctions.js"
 import * as specific from "../helpingScripts/appSpecific.js"
 
-const elementManeger = basic.createBaseElement()
+const elementManager = basic.createBaseElement()
 
-const session = JSON.parse(sessionStorage.getItem("activeUser"))
-const local = JSON.parse(localStorage.getItem("activeUser"))
-const today = new Date()
+let user = await specific.isUserActive()
 
-let user
-
-const main = elementManeger.querySelector("main")
-const avatar = elementManeger.getElementById("avatar")
-const welcomeMsg = elementManeger.getElementById("welcome-msg")
-const emailInfo = elementManeger.getElementById("email-info")
-const roleInfo = elementManeger.getElementById("role-info")
-const logOutButton = elementManeger.getElementById("log-out-button")
-
-if(!session && !local){
-    basic.changeWindow("../pages/login.html")
-}
-else if(local){
-    user = JSON.parse(specific.decrypt(local.user))
-    if(new Date(local.expiry) >= today){
-        specific.logOutUser()
-    }
-    else{
-        console.log("not expired")
-    }
-}
-else{
-    user = JSON.parse(specific.decrypt(session.user))
-}
+const main = elementManager.querySelector("main")
+const avatar = elementManager.getElementById("avatar")
+const welcomeMsg = elementManager.getElementById("welcome-msg")
+const emailInfo = elementManager.getElementById("email-info")
+const roleInfo = elementManager.getElementById("role-info")
+const logOutButton = elementManager.getElementById("log-out-button")
 
 if(user.role === "admin"){
-    const adminButton = elementManeger.createElement("button")
+    const adminButton = elementManager.createElement("button")
 
     adminButton.setID("admin-panel")
 

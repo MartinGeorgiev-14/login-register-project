@@ -12,7 +12,7 @@
       "email": "admin@admin.com",
       "gender": "Male",
       "img": "/images/default.jpg",
-      "role": "user",
+      "role": "admin",
       "createdOn": "03/02/2024 19:37:14",
       "editHistory": []
     },
