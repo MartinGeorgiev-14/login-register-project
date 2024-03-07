@@ -40,6 +40,89 @@ main #header-options{
     border-top-right-radius: 0.4rem;
 }
 
+main #reset{
+    background-color: var(--main-color);
+    color: white;
+    border-style: none;
+    font-size: 1.2rem;
+    padding: 0.2rem 0.8rem;
+    border-radius: 1rem;
+    position: relative;
+    right: 35%;
+    bottom: 1%;
+}
+
+main #reset:hover{
+    cursor: pointer;
+    background-color: var(--hover-color);
+}
+
+/* Start of button navigation */
+
+main .button-navigation{
+    width: 80%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+    
+}
+
+main .buttons-container{
+    display: flex;
+    justify-self: center;
+    list-style: none;
+    gap: 1rem;
+}
+
+main .button-navigation .input-container input{
+    font-size: 1.2rem;
+}
+
+main .button-navigation .input-container a{
+    background-color: var(--main-color);
+    font-size: 1rem;
+    padding: 0rem 0.2rem;
+    color: white;
+    border-radius: 1rem;
+   
+}
+
+main .button-navigation .input-container a:hover{
+    background-color: var(--hover-color);
+    cursor: pointer;
+}
+
+main .button-navigation .buttons-container a{
+    background-color: var(--main-color);
+    color: white;
+    padding: 0.2rem 0.7rem;
+    border-radius: 1rem;
+    border: 2px solid transparent;
+}
+
+main .button-navigation .buttons-container a:hover{
+    background-color: var(--hover-color);
+    cursor: pointer;
+}
+
+main .button-navigation .buttons-container .selected{
+    border-color: red;
+}
+
+main .button-navigation .buttons-container .dots{
+    background-color: transparent;
+    color: black;
+}
+
+main .button-navigation .buttons-container .dots:hover{
+    background-color: transparent;
+    cursor: auto;
+}
+
+/* End of button navigation */
+
 /* Start of users containers */
 
 table{
@@ -77,6 +160,7 @@ main #users-container #user-title{
 
 #username-sort{
     padding-left: 1rem;
+    width: fit-content;
 }
 
 main #users-container .user{

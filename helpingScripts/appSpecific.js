@@ -324,3 +324,18 @@ export async function isUserActive(){
         return await call.getFromDB(`users/${userId}`)
     }
 }
+
+//Function that calculates elements per page
+export async function pageDesider(elNum){
+    const users = await call.getFromDB("users")
+    let length = users.length
+
+    while(length % elNum !== 0){
+        length += 1
+    }
+
+    return length / elNum
+    
+}
+
+

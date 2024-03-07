@@ -7,6 +7,12 @@ export function createBaseElement() {
         getElement() {
             return this.element;
         },
+        getInnerHTML(){
+            return this.element.innerHTML
+        },
+        getInnerText(){
+            return this.element.innerText
+        },
         addClass(val) {
             this.element.classList.add(val);
         },
@@ -200,3 +206,4 @@ export function removeRowsExceptFirst(table) {
         table.deleteRow(1);
     } 
 }
+

@@ -65,9 +65,9 @@ export async function getFromDB(value, func){
     }
 }
 
-export async function deleteUser(userId){
+export async function deleteUser(userId, deletedUser, userDeleter){
     const url = `http://localhost:3000/users/${userId}`
-
+    
     try {
         const response = await fetch(url, {
             method: "DELETE",
@@ -78,6 +78,7 @@ export async function deleteUser(userId){
 
         if (response.ok){
             alert("User has been deleted")
+            await recordDeletedUser(deletedUser, userDeleter)
         }
         else{
             throw new Error(response.statusText)
@@ -88,4 +89,21 @@ export async function deleteUser(userId){
     }
 }
 
+async function recordDeletedUser(deletedUser, userDeleter){
+    const url = "http://localhost:3000/deleteHistory"
 
+    const data = {
+        deletedUser: deletedUser,
+        userDeleter: userDeleter,
+        deletionDate: specific.getDateNow()
+    }
+    
+    const response = await fetch(url, {
+        method: "POST",
+        headers:{
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data)
+    })
+
+}

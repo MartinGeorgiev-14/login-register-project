@@ -2,15 +2,55 @@ import * as basic from "../helpingScripts/basicFunctions.js"
 import * as specific from "../helpingScripts/appSpecific.js"
 import * as call from "./calls.js"
 
+specific.pageDesider(10)
+
 const elementManager = basic.createBaseElement()
 const user = await specific.isUserActive()
 
 const adminImg = elementManager.getElementById("admin-img")
 const adminUsername = elementManager.getElementById("admin-username")
+const usernameSort = elementManager.getElementById("username-sort")
+const roleSort = elementManager.getElementById("role-sort")
+const resetBtn = elementManager.getElementById("reset")
+
+let isUsernameSorted = false
+let isRoleSorted = false
 //Checks if the logged person is admin
 if(user.role !== "admin"){
     basic.changeWindow("../index.html")
 }
+
+resetBtn.addEventListenerFnc("click", async function(){
+    await call.getFromDB("users", displayUsers)
+    usernameSort.setInnerHTML("Username")
+    roleSort.setInnerHTML("User Role")
+})
+
+usernameSort.addEventListenerFnc("click", async function(){
+    if(isUsernameSorted){
+        await call.getFromDB("users?_sort=username", displayUsers)
+        usernameSort.setInnerHTML(usernameSort.getInnerText() + ` <i class="fa-solid fa-sort-up"></i>`)
+        isUsernameSorted = false
+    }
+    else {
+        await call.getFromDB("users?_sort=-username", displayUsers)
+        usernameSort.setInnerHTML(usernameSort.getInnerText() + ` <i class="fa-solid fa-sort-down"></i>`)
+        isUsernameSorted = true
+    }
+})
+
+roleSort.addEventListenerFnc("click", async function(){
+    if(isRoleSorted){
+        await call.getFromDB("users?_sort=role", displayUsers)
+        roleSort.setInnerHTML(roleSort.getInnerText() + ` <i class="fa-solid fa-sort-up"></i>`)
+        isRoleSorted = false
+    }
+    else{
+        await call.getFromDB("users?_sort=-role", displayUsers)
+        roleSort.setInnerHTML(roleSort.getInnerText() + ` <i class="fa-solid fa-sort-down"></i>`)
+        isRoleSorted = true
+    }
+})
 
 await call.getFromDB("users", displayUsers)
 
@@ -93,8 +133,8 @@ function displayUsers(usersData){
                 return
             }
 
-            // await call.deleteUser(element.id)
-            // await call.getFromDB("users", displayUsers)
+            await call.deleteUser(element.id, element, user)
+            await call.getFromDB("users", displayUsers)
         })
 
     });
