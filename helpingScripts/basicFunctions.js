@@ -175,6 +175,7 @@ export function createBaseElement() {
 }
 //Functions that removes all child elements out of a parent element
 export function childRemover(parent){
+   
     while(parent.firstChild){
         parent.removeChild(parent.firstChild)
     }

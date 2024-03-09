@@ -76,25 +76,32 @@ main .buttons-container{
     gap: 1rem;
 }
 
+main .button-navigation .input-container{
+    display: flex;
+}
+
 main .button-navigation .input-container input{
     font-size: 1.2rem;
+
 }
 
-main .button-navigation .input-container a{
+main .button-navigation .input-container p{
+    font-size: 1.2rem;
     background-color: var(--main-color);
-    font-size: 1rem;
-    padding: 0rem 0.2rem;
     color: white;
-    border-radius: 1rem;
-   
+    padding: 0.1rem 0.6rem;
+    border-radius: 50%;
+    margin-left: 0.4rem;
 }
 
-main .button-navigation .input-container a:hover{
+main .button-navigation .input-container p:hover{
     background-color: var(--hover-color);
     cursor: pointer;
 }
 
-main .button-navigation .buttons-container a{
+
+
+main .button-navigation .buttons-container li{
     background-color: var(--main-color);
     color: white;
     padding: 0.2rem 0.7rem;
@@ -102,7 +109,7 @@ main .button-navigation .buttons-container a{
     border: 2px solid transparent;
 }
 
-main .button-navigation .buttons-container a:hover{
+main .button-navigation .buttons-container li:hover{
     background-color: var(--hover-color);
     cursor: pointer;
 }

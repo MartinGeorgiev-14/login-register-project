@@ -42,7 +42,7 @@ export async function postUser(obj, url = "http://localhost:3000/users"){
 }
 
 //function for getting information from the database
-export async function getFromDB(value, func){
+export async function getFromDB(value, func, numOfEls = 10){
     const endpoint = `http://localhost:3000/${value}`
 
     try{
@@ -51,7 +51,7 @@ export async function getFromDB(value, func){
 
     
     if(response.ok && func){
-        func(responseData)
+       await func(responseData, numOfEls)
     }
     else if(response.ok){
         return responseData
