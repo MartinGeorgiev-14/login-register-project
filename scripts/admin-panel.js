@@ -2,83 +2,110 @@ import * as basic from "../helpingScripts/basicFunctions.js"
 import * as specific from "../helpingScripts/appSpecific.js"
 import * as call from "./calls.js"
 
-let selectedPage = 7
 
+let selectedPage = 1
+const elementsPerPage = 10
+const defaultEndpoint = `users?_page=${selectedPage}&_per_page=${elementsPerPage}`
+let activeURL = ["users?_page=", "&_per_page="]
+
+ 
 const elementManager = basic.createBaseElement()
 const user = await specific.isUserActive()
 
 const adminImg = elementManager.getElementById("admin-img")
 const adminUsername = elementManager.getElementById("admin-username")
+const searchInput = elementManager.getElementById("search-input")
+const submitInput = elementManager.getElementById("submit-input")
 const usernameSort = elementManager.getElementById("username-sort")
 const roleSort = elementManager.getElementById("role-sort")
 const resetBtn = elementManager.getElementById("reset")
 
 let isUsernameSorted = false
 let isRoleSorted = false
+
 //Checks if the logged person is admin
 if (user.role !== "admin") {
     basic.changeWindow("../index.html")
 }
 
+searchInput.addEventListenerFnc("keyup", async function(event){
+    event.preventDefault()
+    
+    if(event.key === "Enter"){
+        searchPage()
+    }
+
+})
+
+submitInput.addEventListenerFnc("click", async function(event){
+    event.preventDefault()
+    searchPage()
+})
+
+//Event listener that resets to the first page
 resetBtn.addEventListenerFnc("click", async function () {
-    await call.getFromDB("users", displayUsers)
+
+    let targets = elementManager.querySelectorAll(".buttons-container li")
+    let targetLi = elementManager.querySelector('.buttons-container li[value="1"]');
+
+    await call.getFromDB(defaultEndpoint, displayUsers)
+    await displayNineButtons(await call.getFromDB(defaultEndpoint))
+
+    activeURL = ["users?_page=", "&_per_page="]
+    selectedPage = 1
+
     usernameSort.setInnerHTML("Username")
     roleSort.setInnerHTML("User Role")
+    basic.classRemover(targets.getAllElements(), "selected")
+    targetLi.addClass("selected")
 })
 
+//Event listener that sorts users by name
 usernameSort.addEventListenerFnc("click", async function () {
     if (isUsernameSorted) {
-        await call.getFromDB("users?_sort=username", displayUsers)
+        await call.getFromDB(`users?_sort=username&_page=${selectedPage}&_per_page${elementsPerPage}`, displayUsers)
         usernameSort.setInnerHTML(usernameSort.getInnerText() + ` <i class="fa-solid fa-sort-up"></i>`)
         isUsernameSorted = false
+        activeURL = ["users?_sort=username&_page=", "&_per_page="]
     }
     else {
-        await call.getFromDB("users?_sort=-username", displayUsers)
+        await call.getFromDB(`users?_sort=-username&_page=${selectedPage}&_per_page${elementsPerPage}`, displayUsers)
         usernameSort.setInnerHTML(usernameSort.getInnerText() + ` <i class="fa-solid fa-sort-down"></i>`)
         isUsernameSorted = true
+        activeURL = ["users?_sort=-username&_page=", "&_per_page="]
     }
 })
 
+//Event listener that sorts by role
 roleSort.addEventListenerFnc("click", async function () {
     if (isRoleSorted) {
         await call.getFromDB("users?_sort=role", displayUsers)
         roleSort.setInnerHTML(roleSort.getInnerText() + ` <i class="fa-solid fa-sort-up"></i>`)
         isRoleSorted = false
+        activeURL = ["users?_sort=role&_page=", "&_per_page="]
     }
     else {
         await call.getFromDB("users?_sort=-role", displayUsers)
         roleSort.setInnerHTML(roleSort.getInnerText() + ` <i class="fa-solid fa-sort-down"></i>`)
         isRoleSorted = true
+        activeURL = ["users?_sort=-role&_page=", "&_per_page="]
     }
 })
 
-await call.getFromDB("users?_page=14&_per_page=10", displayUsers, 10)
+//Initial call to display users data
+await call.getFromDB(defaultEndpoint, displayUsers, 10)
 
+//Function that displays users data
 async function displayUsers(usersData, numOfEls) {
     const table = elementManager.getElementById("users-container")
-    const title = elementManager.getElementById("user-title")
-    const pages = await specific.pageDesider(numOfEls)
-    // if(!usersData)
 
-    const currentPage = usersData.next - 1
+    await buttonsDisplayer(selectedPage, usersData)
 
-    const buttonsLength = currentPage > 4 ? 11 : 9
-
-    
-    if (currentPage < 4) {
-
-        await displayNineButtons(usersData)
-    }
-    else if (currentPage > usersData.last - 4) {
-        await displayNineButtonsReverse(usersData)
-    }
-    else {
-        await displayElevenButtons(usersData)
-    }
-
+    //setting img and innerHtml of the logged admin on the header
     adminImg.setSrc(user.img)
     adminUsername.setInnerHTML(user.username)
 
+    //Removes all elements in the table exept 
     basic.removeRowsExceptFirst(table.getElement())
 
     usersData.data.forEach(element => {
@@ -157,9 +184,9 @@ async function displayUsers(usersData, numOfEls) {
 
     });
 }
-// The last 3 functions needs to be remade 
+// Function that displays the first configuration of buttons
+// example          Previous 1 2 3 4 ... 14 15 Next
 async function displayNineButtons(usersData) {
-
     const buttonContainer = elementManager.querySelectorAll(".buttons-container")
     basic.childRemover(buttonContainer.getCertainElement(0))
     for (let i = 1; i <= 9; i++) {
@@ -209,21 +236,19 @@ async function displayNineButtons(usersData) {
         li.appendTo(buttonContainer.getCertainElement(0))
 
         li.addEventListenerFnc("click", async function () {
-            if (li.getValue()) {
-                selectedPage = li.getValue()
-                await call.getFromDB(`users?_page=${li.getValue()}&_per_page=10`, displayUsers)
-            }
+            await pageSwitcher(li)
         })
     }
 }
-
+//Function that displays the second configuration of buttons
+//example           Previous 1 2 ... 5 6 7 ... 14 15 Next
 async function displayElevenButtons(usersData) {
     const buttonContainer = elementManager.querySelectorAll(".buttons-container")
     basic.childRemover(buttonContainer.getCertainElement(0))
 
     for (let i = 1; i <= 11; i++) {
         const li = elementManager.createElement("li")
-        console.log(selectedPage)
+
         switch (i) {
             case 1:
                 li.setInnerHTML("Previous")
@@ -287,21 +312,24 @@ async function displayElevenButtons(usersData) {
 
 
         li.addEventListenerFnc("click", async function () {
-            if (li.getValue()) {
-                selectedPage = li.getValue()
-                await call.getFromDB(`users?_page=${li.getValue()}&_per_page=10`, displayUsers)
-            }
+            await pageSwitcher(li)
         })
     }
 }
-
+//Function that displays the third configuration of buttons
+// example          Previous 1 2 ... 4 12 13 14 15 Next
 async function displayNineButtonsReverse(usersData) {
     const buttonContainer = elementManager.querySelectorAll(".buttons-container")
     basic.childRemover(buttonContainer.getCertainElement(0))
-    for (let i = 1; i <= 9; i++) {
+
+    const end = usersData.last
+    const begin = end - 8
+
+    for (let i = begin; i <= end; i++) {
         const li = elementManager.createElement("li")
+
         switch (i) {
-            case 1:
+            case end - 8: //1
                 li.setInnerHTML("Previous")
                 if (!usersData.prev) {
                     li.setDisabledAttribute()
@@ -310,36 +338,24 @@ async function displayNineButtonsReverse(usersData) {
                     li.setValue(usersData.prev)
                 }
                 break
-            case 2:
+            case end - 7: //2
                 li.setValue(usersData.first)
                 li.setInnerHTML(usersData.first)
                 break
-            case 3:
+            case end - 6: //3
                 li.setValue(usersData.first + 1)
                 li.setInnerHTML(usersData.first + 1)
                 break
-            case 4:
+            case end - 5: //4
                 li.addClass("dots")
                 li.setInnerHTML("...")
                 break
-            case 5:
-                li.setValue(usersData.last - 3)
-                li.setInnerHTML(usersData.last - 3)
+            case selectedPage - 1:
+                li.addClass("selected")
+                li.setValue(i + 1)
+                li.setInnerHTML(i + 1)
                 break
-            case 6:
-                li.setValue(usersData.last - 2)
-                li.setInnerHTML(usersData.last - 2)
-                break
-            case 7:
-                li.setValue(usersData.last - 1)
-                li.setInnerHTML(usersData.last - 1)
-                break
-            case 8:
-                li.setValue(usersData.last)
-                li.setInnerHTML(usersData.last)
-                break
-
-            case 9:
+            case end:
                 if (!usersData.next) {
                     li.setDisabledAttribute()
                 }
@@ -348,24 +364,56 @@ async function displayNineButtonsReverse(usersData) {
                 }
                 li.setInnerHTML("Next")
                 break
-            case selectedPage + 1:
-                li.addClass("selected")
-                li.setValue(i - 1)
-                li.setInnerHTML(i - 1)
-                break
+
             default:
-                li.setValue(i - 1)
-                li.setInnerHTML(i - 1)
+                li.setValue(i + 1)
+                li.setInnerHTML(i + 1)
                 break
         }
 
         li.appendTo(buttonContainer.getCertainElement(0))
 
         li.addEventListenerFnc("click", async function () {
-            if (li.getValue()) {
-                selectedPage = li.getValue()
-                await call.getFromDB(`users?_page=${li.getValue()}&_per_page=10`, displayUsers)
-            }
+            await pageSwitcher(li)
         })
+    }
+}
+
+async function pageSwitcher(page){
+    if (page.getValue()) {
+        selectedPage = page.getValue()
+        await call.getFromDB(activeURL[0] + selectedPage + activeURL[1] + elementsPerPage, displayUsers)
+    }
+}
+
+async function buttonsDisplayer(selPage, data){
+        //Validation that checks which button configutation to display
+        if (selPage < 4) {
+            //First configuration
+            await displayNineButtons(data)
+        }
+        else if (selPage > data.last - 3) {
+            //Third configuration
+            await displayNineButtonsReverse(data)
+        }
+        else {
+            //Second configuration
+            await displayElevenButtons(data)
+        }
+}
+
+async function searchPage(){
+    const users = await call.getFromDB(activeURL[0] + selectedPage + activeURL[1] + elementsPerPage)
+    const totalPages = users.last
+
+
+    if(searchInput.getValue() <= totalPages){
+        await call.getFromDB(activeURL[0] + searchInput.getValue() + activeURL[1] + elementsPerPage, displayUsers)
+        selectedPage = parseInt(searchInput.getValue())
+        await buttonsDisplayer(searchInput.getValue(), users)
+        searchInput.setValue("")
+    }
+    else{
+        alert(`You cannot exceed the total amount of pages. Total pages: ${totalPages}`)
     }
 }

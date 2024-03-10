@@ -25,6 +25,9 @@ export function createBaseElement() {
         setInnerHTML(val) {
             this.element.innerHTML = val;
         },
+        getInnerHTML(){
+            return this.element.innerHTML
+        },
         appendTo(parent) {
             parent.append(this.element);
         },        
@@ -61,6 +64,9 @@ export function createBaseElement() {
         getLength(){
             return this.element.value.length
         },
+        isNumber(prop) {
+            return typeof this.element[prop] === 'number' && !isNaN(this.element[prop]);
+        },        
         forEachFnc(func){
             this.elements.forEach(element => {
                 func(element);
@@ -195,9 +201,10 @@ export function styleChanger(query, value){
 
 //function that removes all classes of given nodeList
 export function classRemover(query, elClass){
-    console.log(query)
+
     query.forEach(element => {
         element.classList.remove(elClass)
+  
     });
 }
 

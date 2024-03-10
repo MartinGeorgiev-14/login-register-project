@@ -1,5 +1,17 @@
 @import url("./base.css");
 
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+    margin: 0; 
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0; 
+}
+
 main{
     display: flex;
     align-items: center;
@@ -85,16 +97,19 @@ main .button-navigation .input-container input{
 
 }
 
-main .button-navigation .input-container p{
+
+
+main .button-navigation .input-container input[type="submit"]{
     font-size: 1.2rem;
     background-color: var(--main-color);
     color: white;
     padding: 0.1rem 0.6rem;
-    border-radius: 50%;
+    border-radius: 30%;
+    border: none;
     margin-left: 0.4rem;
 }
 
-main .button-navigation .input-container p:hover{
+main .button-navigation .input-container input[type="submit"]:hover{
     background-color: var(--hover-color);
     cursor: pointer;
 }

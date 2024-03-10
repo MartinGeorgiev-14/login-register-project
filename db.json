@@ -33,22 +33,6 @@
       "editHistory": []
     },
     {
-      "id": "3c8d",
-      "username": "johnsmith",
-      "firstName": "John",
-      "lastName": "Smith",
-      "password": {
-        "hashedPassword": "8a6fc6c3eb614a2cfc75e08a7f1b8f5687115c9b6f6a58107f17c6a2e66f61a2",
-        "salt": "d2c9b0e4b547308c6ff4c8ea2ee3a9d4"
-      },
-      "email": "john.smith@example.com",
-      "gender": "Male",
-      "img": "/images/default.jpg",
-      "role": "user",
-      "createdOn": "04/03/2024 12:30:22",
-      "editHistory": []
-    },
-    {
       "id": "4e5f",
       "username": "user456",
       "firstName": "Chris",
@@ -2383,6 +2367,42 @@
         "editHistory": []
       },
       "deletionDate": "04/02/2024 23:51:53"
+    },
+    {
+      "id": "4ab9",
+      "deletedUser": {
+        "id": "3c8d",
+        "username": "johnsmith",
+        "firstName": "John",
+        "lastName": "Smith",
+        "password": {
+          "hashedPassword": "8a6fc6c3eb614a2cfc75e08a7f1b8f5687115c9b6f6a58107f17c6a2e66f61a2",
+          "salt": "d2c9b0e4b547308c6ff4c8ea2ee3a9d4"
+        },
+        "email": "john.smith@example.com",
+        "gender": "Male",
+        "img": "/images/default.jpg",
+        "role": "user",
+        "createdOn": "04/03/2024 12:30:22",
+        "editHistory": []
+      },
+      "userDeleter": {
+        "id": "10c6",
+        "username": "admin",
+        "firstName": "marto",
+        "lastName": "admina",
+        "password": {
+          "hashedPassword": "93260bfc6af4beb70cb45a44683700b1de5bd44e2e90591008faea3a61ee5c13",
+          "salt": "17685f7fdabf198db22116276abdf4cb"
+        },
+        "email": "georgiev632@gmail.com",
+        "gender": "Male",
+        "img": "/images/game.jpg",
+        "role": "admin",
+        "createdOn": "04/02/2024 23:04:27",
+        "editHistory": []
+      },
+      "deletionDate": "10/02/2024 22:56:24"
     }
   ],
   "pagination": {
