@@ -3,6 +3,8 @@
     --hover-color: rgb(79, 168, 255);
     --border: rgb(219, 219, 219);
     --hover-border: rgb(195, 195, 195);
+    --error-color: red;
+    --error-hover: rgb(215, 2, 2);
 }
 
 *{

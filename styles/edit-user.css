@@ -1,0 +1,146 @@
+@import url("./base.css");
+
+main{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    margin-top: 3rem;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: var(--main-color);
+}
+
+header img{
+    height: 3.6rem;
+    width: 3.6rem;
+    border-radius: 50%;
+}
+
+header p{
+    color: white;
+    font-size: 1.2rem;
+}
+
+/* Edit container start */
+
+#edit-container{
+    border: solid 1px;
+    border-color: var(--border);
+    border-radius: 2px;
+    gap: 1rem;
+    width: 30em;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+#edit-container .edit-row{
+    display: flex;
+    flex-direction: column;
+}
+
+/* dropdown imgs start */
+
+#edit-container .profile-img{
+    align-items: center;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#edit-container .profile-img img {
+    height: 5rem;
+    width: 5rem;
+    border-radius: 50%;
+}
+
+#edit-container .profile-img{
+    position: relative;
+}
+
+#edit-container .profile-img .drop-down-images{
+    display: none;
+    position: absolute;
+    top: 105%;
+    background-color: dimgray;
+    padding: 1rem;
+}
+
+#edit-container .profile-img .drop-down-images img{
+    border: 2px solid transparent;
+}
+
+#edit-container .profile-img:hover .drop-down-images{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+}
+
+#edit-container .profile-img .drop-down-images img:hover{
+    border: 2px solid var(--main-color);
+    cursor: pointer;
+}
+
+.selected {
+    border: 2px solid var(--main-color);
+}
+
+.close-icon{
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+}
+
+.close-icon:hover{
+    color: rgb(35, 35, 35);
+    cursor: pointer;
+}
+/* dropdown imgs end */
+
+#edit-container .edit-row-names{
+    display: flex;
+    gap: 1rem;
+}
+
+#edit-container input, #edit-container #gender-select{
+    font-size: 1.2rem;
+    padding: 0.2rem;
+    border: solid 1px var(--border);
+    border-radius: 2px;
+    outline: none;
+    width: 100%;
+}
+
+#edit-container #gender-select:hover{
+    cursor: pointer;
+}
+
+#edit-container input:focus{
+    border-color: var(--hover-border);
+}
+
+.error-msg{
+    color: var(--error-color);
+    font-weight: bold;
+}
+
+.error-input{
+    border-color: var(--error-color) !important;    
+}
+.error-input:focus{
+    border-color: var(--error-hover) !important;    
+}
+
+#edit-container .dates-row{
+    display: flex;
+    flex-direction: row;
+}
+
+/* Edit container end */

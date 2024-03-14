@@ -28,6 +28,7 @@ if (user.role !== "admin") {
     basic.changeWindow("../index.html")
 }
 
+//Event listener for searching page
 searchInput.addEventListenerFnc("keyup", async function(event){
     event.preventDefault()
     
@@ -36,7 +37,7 @@ searchInput.addEventListenerFnc("keyup", async function(event){
     }
 
 })
-
+//Event listener for searching page
 submitInput.addEventListenerFnc("click", async function(event){
     event.preventDefault()
     searchPage()
@@ -99,6 +100,7 @@ await call.getFromDB(defaultEndpoint, displayUsers, 10)
 async function displayUsers(usersData, numOfEls) {
     const table = elementManager.getElementById("users-container")
 
+    //Calling function that displays buttons
     await buttonsDisplayer(selectedPage, usersData)
 
     //setting img and innerHtml of the logged admin on the header
@@ -183,6 +185,7 @@ async function displayUsers(usersData, numOfEls) {
         })
 
     });
+    
 }
 // Function that displays the first configuration of buttons
 // example          Previous 1 2 3 4 ... 14 15 Next
@@ -379,6 +382,7 @@ async function displayNineButtonsReverse(usersData) {
     }
 }
 
+//Function that is beeing called when user clicks on button to change page
 async function pageSwitcher(page){
     if (page.getValue()) {
         selectedPage = page.getValue()
@@ -402,6 +406,7 @@ async function buttonsDisplayer(selPage, data){
         }
 }
 
+//Function that displays searched page by user
 async function searchPage(){
     const users = await call.getFromDB(activeURL[0] + selectedPage + activeURL[1] + elementsPerPage)
     const totalPages = users.last
