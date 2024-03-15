@@ -169,6 +169,17 @@ async function displayUsers(usersData, numOfEls) {
         edit.appendTo(userActionsDiv.getElement())
         remove.appendTo(userActionsDiv.getElement())
 
+        edit.addEventListenerFnc("click", function(){
+            if (user.role !== "admin") {
+                basic.changeWindow("../index.html")
+                return
+            }
+            
+            const encodedID = encodeURIComponent(element.id)
+
+            basic.changeWindow(`./edit-user.html?data=${encodedID}`)
+        })
+
         remove.addEventListenerFnc("click", async function () {
             if (user.role !== "admin") {
                 basic.changeWindow("../index.html")

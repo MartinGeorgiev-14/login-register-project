@@ -14,24 +14,31 @@
 
 <body>
     <header>
-        <img id="admin-img" src="" alt="">
-        <p id="admin-username"></p>
+        <img id="admin-img" src="../images/game.jpg" alt="">
+        <p id="admin-username">Martin georgiev</p>
     </header>
 
     <main>
-        <form id="edit-container">
+        <div id="edit-container">
             <p>Edit User</p>
 
             <div class="profile-img edit-row">
-                <img src="" id="user-img">
-                <div id="drop-down-images">
-                    <i class="fa-solid fa-xmark close-icon" id="close-icon"></i>
+                <img src="../images/car.jpg">
+                <div class="drop-down-images">
+                    <i class="fa-solid fa-xmark close-icon"></i>
+                    <img src="../images/default.jpg" alt="" class="selected">
+                    <img src="../images/default.jpg" alt="">
+                    <img src="../images/default.jpg" alt="">
+                    <img src="../images/default.jpg" alt="">
+                    <img src="../images/default.jpg" alt="">
+                    <img src="../images/default.jpg" alt="">
+                    <img src="../images/default.jpg" alt="">
                 </div>
             </div>
 
             <div class="edit-row">
                 <label for="username-input">Username</label>
-                <input type="text" id="username-input" >
+                <input type="text" id="username-input">
                 
             </div>
 
@@ -49,8 +56,8 @@
             </div>
 
             <div class="edit-row">
-                <label for="email-input">Email</label>
-                <input type="email" id="email-input">
+                <label for="">Email</label>
+                <input type="email">
             </div>
 
             <div class="edit-row">
@@ -66,15 +73,14 @@
 
             <div class="edit-row dates-row">
                 <div>
-                    <p id="created-on-p"></p>
+                    <p>Created On: 14.04.2010 10:23</p>
                 </div>
                 <div>
-                    <p id="edited-on-p">Edited On: 20.02.2015 11:23</p>
-                    <p id="edited-by-p">By: Martin georgiev</p>
+                    <p>Edited On: 20.02.2015 11:23</p>
+                    <p>By: Martin georgiev</p>
                 </div>
             </div>
-            <input type="submit" id="save-input" value="Save" disabled>
-        </form>
+        </div>
     </main>
 
     <script src="../scripts/edit-user.js" type="module"></script>

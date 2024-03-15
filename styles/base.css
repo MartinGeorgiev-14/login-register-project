@@ -13,7 +13,7 @@
     box-sizing: border-box;
 }
 
-[disabled] {
+/* [disabled] {
     width: auto;
     height: auto;
     padding: 0;
@@ -23,7 +23,7 @@
     background: none;
     color: inherit;
     opacity: 1;
-}
+} */
 
 body{
     width: 100%;

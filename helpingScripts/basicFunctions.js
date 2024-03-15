@@ -201,12 +201,21 @@ export function styleChanger(query, value){
 
 //function that removes all classes of given nodeList
 export function classRemover(query, elClass){
-
+    
     query.forEach(element => {
         element.classList.remove(elClass)
   
     });
 }
+
+export function classRemoverArray(array, elClass){
+    array.forEach(element => {
+        element.element.classList.remove(elClass)
+  
+    });
+}
+
+
 
 export function removeRowsExceptFirst(table) {  
 
