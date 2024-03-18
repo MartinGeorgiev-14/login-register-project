@@ -92,7 +92,7 @@ registerInput.addEventListenerFnc("click", async function(event){
             email: emailInput.getValue(),
             gender: selectedGender.value,
             img: imgSource,
-            role: "user",
+            role: "User",
             createdOn: specific.getDateNow(),
             editHistory: []
         }

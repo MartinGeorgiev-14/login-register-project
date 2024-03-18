@@ -103,12 +103,18 @@ header p{
 }
 /* dropdown imgs end */
 
-#edit-container .edit-row-names{
+#edit-container .double-row{
     display: flex;
+    justify-content: center;
+    width: 100%;
     gap: 1rem;
 }
 
-#edit-container input, #edit-container #gender-select{
+#edit-container .double-row div{
+    width: 100%;
+}
+
+#edit-container input, #edit-container .selectors{
     font-size: 1.2rem;
     padding: 0.2rem;
     border: solid 1px var(--border);
@@ -117,7 +123,7 @@ header p{
     width: 100%;
 }
 
-#edit-container #gender-select:hover{
+#edit-container .selectors:hover{
     cursor: pointer;
 }
 

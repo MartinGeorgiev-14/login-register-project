@@ -35,7 +35,7 @@
                 
             </div>
 
-            <div class="edit-row-names">
+            <div class="double-row">
                 <div>
                     <label for="first-name-input">First Name</label>
                     <input type="text" id="first-name-input">
@@ -53,14 +53,23 @@
                 <input type="email" id="email-input">
             </div>
 
-            <div class="edit-row">
-                <label for="gender-select">Gender</label>
-                <select name="gender" id="gender-select">
-                    <option value="current gender" disabled selected>current gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
-                </select>
+            <div class="double-row">
+                <div>
+                    <label for="gender-select">Gender</label>
+                    <select name="gender" id="gender-select" class="selectors">  
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="role-select">Role</label>
+                    <select name="role" id="role-select" class="selectors">
+                        <option value="User">User</option>
+                        <option value="Super User">Super User</option>
+                        <option value="Other">Admin</option>
+                    </select>
+                </div>
             </div>
 
 
@@ -69,8 +78,8 @@
                     <p id="created-on-p"></p>
                 </div>
                 <div>
-                    <p id="edited-on-p">Edited On: 20.02.2015 11:23</p>
-                    <p id="edited-by-p">By: Martin georgiev</p>
+                    <p id="edited-on-p"></p>
+                    <p id="edited-by-p"></p>
                 </div>
             </div>
             <input type="submit" id="save-input" value="Save" disabled>

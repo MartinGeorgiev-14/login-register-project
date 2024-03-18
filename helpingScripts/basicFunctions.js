@@ -49,11 +49,17 @@ export function createBaseElement() {
         removeAttribute(attribute){
             this.element.removeAttribute(attribute)
         },
+        getAttribute(attribute){
+            return this.element.getAttribute(attribute)
+        },
         getValue(){
             return this.element.value
         },
         setValue(value){
             this.element.value = value
+        },
+        getSrc(){
+            return this.element.src 
         },
         getType(){
             return this.element.type

@@ -12,7 +12,7 @@ const emailInfo = elementManager.getElementById("email-info")
 const roleInfo = elementManager.getElementById("role-info")
 const logOutButton = elementManager.getElementById("log-out-button")
 
-if(user.role === "admin"){
+if(user.role === "Admin"){
     const adminButton = elementManager.createElement("button")
 
     adminButton.setID("admin-panel")

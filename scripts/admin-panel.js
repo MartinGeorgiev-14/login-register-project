@@ -24,7 +24,7 @@ let isUsernameSorted = false
 let isRoleSorted = false
 
 //Checks if the logged person is admin
-if (user.role !== "admin") {
+if (user.role !== "Admin") {
     basic.changeWindow("../index.html")
 }
 
@@ -137,11 +137,11 @@ async function displayUsers(usersData, numOfEls) {
         remove.addClass("remove")
 
         //Validation if element is user or admin
-        if (element.role === "user") {
+        if (element.role === "User") {
             role.addClass("role-user")
             edit.setInnerHTML(`<i class="fa-solid fa-gear"></i> Modify User`)
         }
-        else if (element.role === "admin") {
+        else if (element.role === "Admin") {
             role.addClass("role-admin")
             remove.setDisabledAttribute()
             edit.setInnerHTML(`<i class="fa-solid fa-gear"></i> See Info`)
@@ -170,7 +170,7 @@ async function displayUsers(usersData, numOfEls) {
         remove.appendTo(userActionsDiv.getElement())
 
         edit.addEventListenerFnc("click", function(){
-            if (user.role !== "admin") {
+            if (user.role !== "Admin") {
                 basic.changeWindow("../index.html")
                 return
             }
