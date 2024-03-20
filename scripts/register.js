@@ -70,7 +70,7 @@ registerInput.addEventListenerFnc("click", async function(event){
     }
 
     //Array that contains bools from validations 
-    let isAllCorrect = [
+    const isAllCorrect = [
         await specific.checkIndividualInfo(usernameInput, "username"),
         specific.checkInputTextRegistration(firstNameInput),
         specific.checkInputTextRegistration(lastNameInput),

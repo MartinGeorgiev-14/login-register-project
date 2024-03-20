@@ -144,7 +144,7 @@ export function checkEmailOrPasswordInputs(element) {
 
 
     if (!checkFunction(element)) {
-        displayErrorMsg(errorEl, `Please enter your ${type}.`)
+        displayErrorMsg(errorEl, `Please enter your ${type} correctly.`)
         makeBorderRed(el)
         return false
     }
@@ -338,4 +338,10 @@ export async function pageDesider(elNum = 10){
     
 }
 
+export function addDisabler(query){
+    query.forEach(element => {
+        element.setAttribute("disabled", "")
+        element.style.cursor = "not-allowed"
+    })
+}
 

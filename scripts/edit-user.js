@@ -3,16 +3,20 @@ import * as specific from "../helpingScripts/appSpecific.js"
 import * as basic from "../helpingScripts/basicFunctions.js"
 
 const user = await specific.isUserActive()
-
+// Checks if current user has role Admin
 if (user.role !== "Admin") {
     basic.changeWindow("../index.html")
 }
 
 const elementManager = basic.createBaseElement()
 
+//Gets given information from url
 const urlParams = new URLSearchParams(window.location.search)
 const recievedData = urlParams.get("data")
+
+//Gets user from database based on id
 const databaseUser = await call.getFromDB(`users/${decodeURIComponent(recievedData)}`)
+//Creates copy of the databaseUser
 const editedUser = Object.assign({}, {
     username: databaseUser.username,
     firstName: databaseUser.firstName,
@@ -23,9 +27,15 @@ const editedUser = Object.assign({}, {
     gender: databaseUser.gender
 })
 
+const allFields = elementManager.querySelectorAll(`select, img[id=user-img], input:not([type="submit"])`)
 const avatars = await call.getFromDB("avatars")
 let availableAvatars = []
 
+if(databaseUser.role === "Admin"){
+    specific.addDisabler(allFields.getAllElements())
+}
+
+// DISPLAYING INFORMATION
 
 const adminImg = elementManager.getElementById("admin-img")
 const adminUsername = elementManager.getElementById("admin-username")
@@ -44,22 +54,23 @@ const editedOn = elementManager.getElementById("edited-on-p")
 const editedBy = elementManager.getElementById("edited-by-p")
 const saveButton = elementManager.getElementById("save-input")
 
-const allFields = elementManager.querySelectorAll(`select, img[id=user-img], input:not([type="submit"])`)
-
-// DISPLAYING INFORMATION
-
 adminImg.setSrc(user.img)
 adminUsername.setInnerHTML(user.username)
 
 userImg.setSrc(databaseUser.img)
 
-userImg.addEventListenerFnc("click", function () {
-    dropDownImages.setStyle("display", "grid")
-})
+if(databaseUser.role !== "Admin"){
+    userImg.addEventListenerFnc("click", function () {
+        dropDownImages.setStyle("display", "grid")
+    })
+    
+    closeIcon.addEventListenerFnc("click", function () {
+        dropDownImages.setStyle("display", "none")
+    })
+    
+}
 
-closeIcon.addEventListenerFnc("click", function () {
-    dropDownImages.setStyle("display", "none")
-})
+// Event listeners for dropdown menu
 
 //displays all avatars to the drop down menu and adds selected class to the selected avatar
 avatars.forEach(element => {
@@ -90,19 +101,20 @@ emailInput.setValue(databaseUser.email)
 genderSelect.setValue(databaseUser.gender)
 roleSelect.setValue(databaseUser.role)
 createdOn.setInnerHTML(`Created on: ${databaseUser.createdOn}`)
-
+// Checks if the user's information has been edited
 if(databaseUser.lastEdited.hasOwnProperty("date") && databaseUser.lastEdited.hasOwnProperty("by")){
     editedOn.setInnerHTML(`Edited on: ${databaseUser.lastEdited.date}`)
     editedBy.setInnerHTML(`Edited by: ${databaseUser.lastEdited.by.username}`)
 }
-
+// Event listener that checks if input is changed
 editContainer.addEventListenerFnc("input", function (event) {
     if (event.target.tagName === "INPUT" || event.target.tagName === 'SELECT') {
         checkFormValidity()
     }
 })
-
+// function for checking if input has been changed
 function checkFormValidity() {
+    
     const currentValues = {
         username: usernameInput.getValue(),
         firstName: firstNameInput.getValue(),
@@ -124,7 +136,7 @@ function checkFormValidity() {
         saveButton.setDisabledAttribute()
     }
 }
-
+// Event listener that validates inputs information and sends patch request
 saveButton.addEventListenerFnc("click", async function(event){
 
     event.preventDefault()
@@ -133,31 +145,37 @@ saveButton.addEventListenerFnc("click", async function(event){
         basic.changeWindow("../index.html")
     }
 
-    const currentValues = {
-        username: usernameInput.getValue(),
-        firstName: firstNameInput.getValue(),
-        lastName: lastNameInput.getValue(),
-        email: emailInput.getValue(),
-        img: userImg.getAttribute("src"),
-        role: roleSelect.getValue(),
-        gender: genderSelect.getValue(),
-        date: specific.getDateNow(),
-        by: {
-                id: user.id,
-                username: user.username,
-                role: user.role
-            },
-        lastVersion: editedUser  
+    //Validates if username, firstname, lastname and email inputs are entered correctly
+    const isAllCorrect = [
+        specific.checkInputTextRegistration(usernameInput),
+        specific.checkInputTextRegistration(firstNameInput),
+        specific.checkInputTextRegistration(lastNameInput),
+        specific.checkEmailOrPasswordInputs(emailInput, "email"),
+    ]
+    
+    //Validates if isAllCorrect contains false (wrongly entered input)
+    if(!isAllCorrect.includes(false)){
+
+        const currentValues = {
+            username: usernameInput.getValue(),
+            firstName: firstNameInput.getValue(),
+            lastName: lastNameInput.getValue(),
+            email: emailInput.getValue(),
+            img: userImg.getAttribute("src"),
+            role: roleSelect.getValue(),
+            gender: genderSelect.getValue(),
+            date: specific.getDateNow(),
+            by: {
+                    id: user.id,
+                    username: user.username,
+                    role: user.role
+                },
+            lastVersion: editedUser  
+        }
+    
+        await call.patchUser(currentValues, databaseUser.id)
+       
     }
-
-    await call.putUser(currentValues, databaseUser.id)
-    //window.location.reload()
+    
+   
 })
-// allFields.addEventListenerFnc("change", function(){
-
-// })
-
-// if(databaseUser.editHistory){
-//     editedOn.setInnerHTML(`Edited On: ${databaseUser.editHistory[databaseUser.editHistory.lenght - 1].date}`)
-//     editedBy.setInnerHTML(`By: ${databaseUser.editHistory[databaseUser.editHistory.lenght - 1].editor}`)
-// }

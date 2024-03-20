@@ -40,8 +40,8 @@ export async function postUser(obj, url = "http://localhost:3000/users"){
         console.error(error)
     }
 }
-
-export async function putUser(obj, id){
+// function for patching information of user
+export async function patchUser(obj, id){
     const url = `http://localhost:3000/users/${id}`
 
     try {
