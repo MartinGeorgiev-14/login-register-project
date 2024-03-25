@@ -28,7 +28,7 @@
       "email": "user456@gmail.com",
       "gender": "Male",
       "img": "/images/game.jpg",
-      "role": "User",
+      "role": "Admin",
       "createdOn": "18/02/2024 22:56:16",
       "lastEdited": {
         "date": "18/02/2024 23:51:12",
@@ -47,6 +47,342 @@
           "gender": "Male"
         }
       }
+    },
+    {
+      "id": "a3d7",
+      "username": "user123",
+      "firstName": "John",
+      "lastName": "Doeas",
+      "password": {
+        "hashedPassword": "47f5c9f1a3558e5e76bb157bb55b15b3",
+        "salt": "e89f4cde"
+      },
+      "email": "john.doe@example.com",
+      "gender": "Female",
+      "img": "/images/person.jpg",
+      "role": "User",
+      "createdOn": "2023-07-15T12:30:45Z",
+      "lastEdited": {
+        "date": "25/02/2024 21:07:36",
+        "by": {
+          "id": "ebff",
+          "username": "martoAdmin",
+          "role": "Admin"
+        },
+        "lastVersion": {
+          "username": "user123",
+          "firstName": "John",
+          "lastName": "Doeas",
+          "email": "john.doe@example.com",
+          "img": "../images/person.jpg",
+          "role": "User",
+          "gender": "Male"
+        }
+      }
+    },
+    {
+      "id": "b9e1",
+      "username": "user456",
+      "firstName": "Alice",
+      "lastName": "Smith",
+      "password": {
+        "hashedPassword": "e1b1b2381445a9a022e8eeb953f8486c",
+        "salt": "f7c98421"
+      },
+      "email": "alice.smith@example.com",
+      "gender": "female",
+      "img": "/images/person.jpg",
+      "role": "User",
+      "createdOn": "2023-09-28T08:15:30Z",
+      "lastEdited": {}
+    },
+    {
+      "id": "c8f2",
+      "username": "user789",
+      "firstName": "Michael",
+      "lastName": "Johnson",
+      "password": {
+        "hashedPassword": "efcd798c75987f0b97164a1f14c827d9",
+        "salt": "da576318"
+      },
+      "email": "michael.johnson@example.com",
+      "gender": "",
+      "img": "/images/person.jpg",
+      "role": "User",
+      "createdOn": "2023-11-05T16:20:10Z",
+      "lastEdited": {
+        "date": "21/02/2024 23:26:18",
+        "by": {
+          "id": "ebff",
+          "username": "martoAdmin",
+          "role": "Admin"
+        },
+        "lastVersion": {
+          "username": "user789",
+          "firstName": "Michael",
+          "lastName": "Johnson",
+          "email": "michael.johnson@example.com",
+          "img": "../images/person.jpg",
+          "role": "User",
+          "gender": "male"
+        }
+      }
+    },
+    {
+      "id": "d4g8",
+      "username": "user7890",
+      "firstName": "Emily",
+      "lastName": "Brown",
+      "password": {
+        "hashedPassword": "b6d92fa8b4dc4fe18e0d26e3653b0d8e",
+        "salt": "ab65fe82"
+      },
+      "email": "emily.brown@example.com",
+      "gender": "female",
+      "img": "/images/person.jpg",
+      "role": "User",
+      "createdOn": "2023-12-10T09:45:20Z",
+      "lastEdited": {}
+    },
+    {
+      "id": "e7h3",
+      "username": "user098",
+      "firstName": "Daniel",
+      "lastName": "Martinez",
+      "password": {
+        "hashedPassword": "3f80dc69d48f8db97762f94bfb77a9cd",
+        "salt": "c7a3fe99"
+      },
+      "email": "daniel.martinez@example.com",
+      "gender": "male",
+      "img": "/images/person.jpg",
+      "role": "User",
+      "createdOn": "2024-01-20T14:10:05Z",
+      "lastEdited": {}
+    },
+    {
+      "id": "f5i9",
+      "username": "user765",
+      "firstName": "Sophia",
+      "lastName": "Taylor",
+      "password": {
+        "hashedPassword": "0e3657b70f962c835fc41e2d39e2f7d2",
+        "salt": "d2ef3617"
+      },
+      "email": "sophia.taylor@example.com",
+      "gender": "female",
+      "img": "/images/person.jpg",
+      "role": "User",
+      "createdOn": "2024-02-18T11:25:55Z",
+      "lastEdited": {}
+    },
+    {
+      "id": "d4g8",
+      "username": "user7890",
+      "firstName": "Emily",
+      "lastName": "Brown",
+      "password": {
+        "hashedPassword": "b6d92fa8b4dc4fe18e0d26e3653b0d8e",
+        "salt": "ab65fe82"
+      },
+      "email": "emily.brown@example.com",
+      "gender": "female",
+      "img": "/images/person.jpg",
+      "role": "User",
+      "createdOn": "2023-12-10T09:45:20Z",
+      "lastEdited": {}
+    },
+    {
+      "id": "e7h3",
+      "username": "user098",
+      "firstName": "Daniel",
+      "lastName": "Martinez",
+      "password": {
+        "hashedPassword": "3f80dc69d48f8db97762f94bfb77a9cd",
+        "salt": "c7a3fe99"
+      },
+      "email": "daniel.martinez@example.com",
+      "gender": "male",
+      "img": "/images/person.jpg",
+      "role": "User",
+      "createdOn": "2024-01-20T14:10:05Z",
+      "lastEdited": {}
+    },
+    {
+      "id": "f5i9",
+      "username": "user765",
+      "firstName": "Sophia",
+      "lastName": "Taylor",
+      "password": {
+        "hashedPassword": "0e3657b70f962c835fc41e2d39e2f7d2",
+        "salt": "d2ef3617"
+      },
+      "email": "sophia.taylor@example.com",
+      "gender": "female",
+      "img": "/images/person.jpg",
+      "role": "User",
+      "createdOn": "2024-02-18T11:25:55Z",
+      "lastEdited": {}
+    },
+    {
+      "id": "d4g8",
+      "username": "user7890",
+      "firstName": "Emily",
+      "lastName": "Brown",
+      "password": {
+        "hashedPassword": "b6d92fa8b4dc4fe18e0d26e3653b0d8e",
+        "salt": "ab65fe82"
+      },
+      "email": "emily.brown@example.com",
+      "gender": "female",
+      "img": "/images/person.jpg",
+      "role": "User",
+      "createdOn": "2023-12-10T09:45:20Z",
+      "lastEdited": {}
+    },
+    {
+      "id": "e7h3",
+      "username": "user098",
+      "firstName": "Daniel",
+      "lastName": "Martinez",
+      "password": {
+        "hashedPassword": "3f80dc69d48f8db97762f94bfb77a9cd",
+        "salt": "c7a3fe99"
+      },
+      "email": "daniel.martinez@example.com",
+      "gender": "male",
+      "img": "/images/person.jpg",
+      "role": "User",
+      "createdOn": "2024-01-20T14:10:05Z",
+      "lastEdited": {}
+    },
+    {
+      "id": "f5i9",
+      "username": "user765",
+      "firstName": "Sophia",
+      "lastName": "Taylor",
+      "password": {
+        "hashedPassword": "0e3657b70f962c835fc41e2d39e2f7d2",
+        "salt": "d2ef3617"
+      },
+      "email": "sophia.taylor@example.com",
+      "gender": "female",
+      "img": "/images/person.jpg",
+      "role": "User",
+      "createdOn": "2024-02-18T11:25:55Z",
+      "lastEdited": {}
+    },
+    {
+      "id": "d4g8",
+      "username": "user7890",
+      "firstName": "Emily",
+      "lastName": "Brown",
+      "password": {
+        "hashedPassword": "b6d92fa8b4dc4fe18e0d26e3653b0d8e",
+        "salt": "ab65fe82"
+      },
+      "email": "emily.brown@example.com",
+      "gender": "female",
+      "img": "/images/person.jpg",
+      "role": "User",
+      "createdOn": "2023-12-10T09:45:20Z",
+      "lastEdited": {}
+    },
+    {
+      "id": "e7h3",
+      "username": "user098",
+      "firstName": "Daniel",
+      "lastName": "Martinez",
+      "password": {
+        "hashedPassword": "3f80dc69d48f8db97762f94bfb77a9cd",
+        "salt": "c7a3fe99"
+      },
+      "email": "daniel.martinez@example.com",
+      "gender": "male",
+      "img": "/images/person.jpg",
+      "role": "User",
+      "createdOn": "2024-01-20T14:10:05Z",
+      "lastEdited": {}
+    },
+    {
+      "id": "f5i9",
+      "username": "user765",
+      "firstName": "Sophia",
+      "lastName": "Taylor",
+      "password": {
+        "hashedPassword": "0e3657b70f962c835fc41e2d39e2f7d2",
+        "salt": "d2ef3617"
+      },
+      "email": "sophia.taylor@example.com",
+      "gender": "female",
+      "img": "/images/person.jpg",
+      "role": "User",
+      "createdOn": "2024-02-18T11:25:55Z",
+      "lastEdited": {}
+    },
+    {
+      "id": "d4g8",
+      "username": "user7890",
+      "firstName": "Emily",
+      "lastName": "Brown",
+      "password": {
+        "hashedPassword": "b6d92fa8b4dc4fe18e0d26e3653b0d8e",
+        "salt": "ab65fe82"
+      },
+      "email": "emily.brown@example.com",
+      "gender": "female",
+      "img": "/images/person.jpg",
+      "role": "User",
+      "createdOn": "2023-12-10T09:45:20Z",
+      "lastEdited": {}
+    },
+    {
+      "id": "e7h3",
+      "username": "user098",
+      "firstName": "Daniel",
+      "lastName": "Martinez",
+      "password": {
+        "hashedPassword": "3f80dc69d48f8db97762f94bfb77a9cd",
+        "salt": "c7a3fe99"
+      },
+      "email": "daniel.martinez@example.com",
+      "gender": "male",
+      "img": "/images/person.jpg",
+      "role": "User",
+      "createdOn": "2024-01-20T14:10:05Z",
+      "lastEdited": {}
+    },
+    {
+      "id": "f5i9",
+      "username": "user765",
+      "firstName": "Sophia",
+      "lastName": "Taylor",
+      "password": {
+        "hashedPassword": "0e3657b70f962c835fc41e2d39e2f7d2",
+        "salt": "d2ef3617"
+      },
+      "email": "sophia.taylor@example.com",
+      "gender": "female",
+      "img": "/images/person.jpg",
+      "role": "User",
+      "createdOn": "2024-02-18T11:25:55Z",
+      "lastEdited": {}
+    },
+    {
+      "id": "64e0",
+      "username": "toshko",
+      "firstName": "toshko",
+      "lastName": "toshko",
+      "password": {
+        "hashedPassword": "1573305e265c5430633280d36a5ace710eed83a9d361c03b845f7409c65ad57c",
+        "salt": "90c386776293b0657b1980af4e4d550b"
+      },
+      "email": "toshko@gmail.com",
+      "gender": "Male",
+      "img": "/images/motorcycle.jpeg",
+      "role": "User",
+      "createdOn": "22/02/2024 12:44:18",
+      "editHistory": []
     }
   ],
   "avatars": [

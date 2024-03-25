@@ -49,11 +49,11 @@ resetBtn.addEventListenerFnc("click", async function () {
     let targets = elementManager.querySelectorAll(".buttons-container li")
     let targetLi = elementManager.querySelector('.buttons-container li[value="1"]');
 
+    selectedPage = 1
     await call.getFromDB(defaultEndpoint, displayUsers)
-    await displayNineButtons(await call.getFromDB(defaultEndpoint))
+    await buttonsDisplayer(selectedPage,  await call.getFromDB(defaultEndpoint))
 
     activeURL = ["users?_page=", "&_per_page="]
-    selectedPage = 1
 
     usernameSort.setInnerHTML("Username")
     roleSort.setInnerHTML("User Role")
@@ -80,13 +80,13 @@ usernameSort.addEventListenerFnc("click", async function () {
 //Event listener that sorts by role
 roleSort.addEventListenerFnc("click", async function () {
     if (isRoleSorted) {
-        await call.getFromDB("users?_sort=role", displayUsers)
+        await call.getFromDB(`users?_sort=role&_page=${selectedPage}&_per_page${elementsPerPage}`, displayUsers)
         roleSort.setInnerHTML(roleSort.getInnerText() + ` <i class="fa-solid fa-sort-up"></i>`)
         isRoleSorted = false
         activeURL = ["users?_sort=role&_page=", "&_per_page="]
     }
     else {
-        await call.getFromDB("users?_sort=-role", displayUsers)
+        await call.getFromDB(`users?_sort=-role&_page=${selectedPage}&_per_page${elementsPerPage}`, displayUsers)
         roleSort.setInnerHTML(roleSort.getInnerText() + ` <i class="fa-solid fa-sort-down"></i>`)
         isRoleSorted = true
         activeURL = ["users?_sort=-role&_page=", "&_per_page="]
@@ -109,7 +109,6 @@ async function displayUsers(usersData, numOfEls) {
 
     //Removes all elements in the table exept 
     basic.removeRowsExceptFirst(table.getElement())
-
     usersData.data.forEach(element => {
         const userTableRow = elementManager.createElement("tr")
         const userInfo = elementManager.createElement("td")
@@ -181,12 +180,12 @@ async function displayUsers(usersData, numOfEls) {
         })
 
         remove.addEventListenerFnc("click", async function () {
-            if (user.role !== "admin") {
+            if (user.role !== "Admin") {
                 basic.changeWindow("../index.html")
                 return
             }
 
-            if (element.role === "admin") {
+            if (element.role === "Admin") {
                 alert("You can not delete other admins")
                 return
             }
@@ -393,6 +392,56 @@ async function displayNineButtonsReverse(usersData) {
     }
 }
 
+async function displayLowNumButtons(usersData){
+    const buttonContainer = elementManager.querySelectorAll(".buttons-container")
+    basic.childRemover(buttonContainer.getCertainElement(0))
+
+    for(let i = 0; i < usersData.last + 2; i++){
+        const li = elementManager.createElement("li")
+       
+        switch (i){
+            //sets value to button Previous
+            case 0:
+                li.setInnerHTML("Previous")
+                if (!usersData.prev) {
+                    li.setDisabledAttribute()
+                }
+                else {
+                    li.setValue(usersData.prev)
+                }
+            break
+            //sets value to button Next
+            case usersData.last + 1:
+                li.setInnerHTML("Next")
+                if (!usersData.next) {
+                    li.setDisabledAttribute()
+                }
+                else {
+                    li.setValue(usersData.next)
+                }
+            break
+            //Checks if i = to selected paga and adds styles innerHTML and value
+            case selectedPage:
+                li.addClass("selected")
+                li.setValue(i)
+                li.setInnerHTML(i)
+                break
+            //For every other button adds innerHTML and value
+            default:
+                li.setValue(i)
+                li.setInnerHTML(i)
+            break
+
+        }
+
+        li.appendTo(buttonContainer.getCertainElement(0))
+
+        li.addEventListenerFnc("click", async function () {
+            await pageSwitcher(li)
+        })
+    }
+}
+
 //Function that is beeing called when user clicks on button to change page
 async function pageSwitcher(page){
     if (page.getValue()) {
@@ -402,8 +451,13 @@ async function pageSwitcher(page){
 }
 
 async function buttonsDisplayer(selPage, data){
+        console.log(data, "ad")
+
+        if(data.last < 7){
+            await displayLowNumButtons(data)
+        }
         //Validation that checks which button configutation to display
-        if (selPage < 4) {
+        else if (selPage < 4) {
             //First configuration
             await displayNineButtons(data)
         }

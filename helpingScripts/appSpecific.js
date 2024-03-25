@@ -1,7 +1,6 @@
 
 import * as call from "../scripts/calls.js"
 import * as basic from "./basicFunctions.js"
-//  /[0-9!@#$%^&*()_+{}\[\]:<>,.?~\\/\-=|]+/
 
 const errorRed = "rgb(255,51,51)"
 
@@ -89,7 +88,7 @@ export function checkInputTextRegistration(element) {
         return true
     }
 }
-
+// Checks if input is entered correctly
 export async function checkIndividualInfo(element, type){
 
     const value = element.getValue()
@@ -99,7 +98,7 @@ export async function checkIndividualInfo(element, type){
     const data = await call.getFromDB("users")
 
     let isFound = false
-
+ 
     data.forEach(element => {
         if(element[type] === value){
             isFound = true
@@ -124,35 +123,44 @@ export async function checkIndividualInfo(element, type){
 // Function that checks for entered information in inputs/ displays error messages/ returns bool
 export function checkEmailOrPasswordInputs(element) {
 
-    let checkFunction
     const type = element.getType()
     const length = element.getLength()
     const el = element.getElement()
     const errorEl = element.getNextSiblingById("error-msg")
-
+    //Check for email
     if (type === "email") {
-        checkFunction = checkEmail
-    }
-    else {
-        checkFunction = checkPassword
-        if (length <= 8) {
-            displayErrorMsg(errorEl, `Your password must be above 8 characters`)
+       
+        if(!checkEmail(element)){
+            console.log("enter email")
+            displayErrorMsg(errorEl, `Please enter your ${type} correctly.`)
             makeBorderRed(el)
             return false
         }
+        else {
+            makeBorderDefaultColor(el)
+            removeErrorMsg(errorEl)
+            return true
+        }
     }
-
-
-    if (!checkFunction(element)) {
-        displayErrorMsg(errorEl, `Please enter your ${type} correctly.`)
-        makeBorderRed(el)
-        return false
-    }
+    //Check for password
     else {
-        makeBorderDefaultColor(el)
-        removeErrorMsg(errorEl)
-        return true
+        if(length < 8){
+            displayErrorMsg(errorEl, `Your password must have at least 8 charaters`)
+            makeBorderRed(el)
+            return false
+        }
+        else if(!checkPassword(element)){
+            displayErrorMsg(errorEl, `Your password must have at least one special character and upper case letter`)
+            makeBorderRed(el)
+            return false
+        }
+        else {
+            makeBorderDefaultColor(el)
+            removeErrorMsg(errorEl)
+            return true
+        }
     }
+
 }
 //Function that checks if input match the condition
 export function checkEmail(email) {
@@ -265,7 +273,7 @@ export function setUser(userData, rememberMeBool) {
         localStorage.setItem("activeUser", JSON.stringify({ user: idEncrypted, expiry: date }))
     }
 }
-
+// Function that removes the infromation of the active user from the localStorage
 export function logOutUser() {
 
     if (localStorage.getItem("activeUser")) {
@@ -276,7 +284,7 @@ export function logOutUser() {
 
     basic.changeWindow("../pages/login.html")
 }
-
+// Function that returs formated date dd/mm/yyyy hh:mm:ss  10/10/2024 15:44:32
 export function getDateNow(){
     const data = new Date()
 
@@ -289,7 +297,7 @@ export function getDateNow(){
 
     return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`
 }
-
+// Function that checks if number is single diggit and if it is returs string with 0 at the begining and number after it 5 -> 05
 function checkIfSingleDiggit(number){
     if(number < 10){
         return `0${number}`
@@ -298,7 +306,7 @@ function checkIfSingleDiggit(number){
         return number
     }
 }
-
+// Function that checks if active user is saved in the session or local storages
 export async function isUserActive(){
     const session = JSON.parse(sessionStorage.getItem("activeUser"))
     const local = JSON.parse(localStorage.getItem("activeUser"))
@@ -308,8 +316,8 @@ export async function isUserActive(){
     if(!session && !local){
         basic.changeWindow("../pages/login.html")
     }
-    else if(local){
-        
+    else if(local){ 
+        //if saved expire date is higher than the current date it logs out the user
         if(new Date(local.expiry) >= today){
             logOutUser()
         }
@@ -337,7 +345,7 @@ export async function pageDesider(elNum = 10){
     return length / elNum
     
 }
-
+//function that adds disabled attribute to array of elements
 export function addDisabler(query){
     query.forEach(element => {
         element.setAttribute("disabled", "")

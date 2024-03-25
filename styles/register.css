@@ -60,9 +60,12 @@ main #register-container form input[type=submit]{
     color: white;
     font-size: 1.2rem;
     padding: 0.2rem;
+    
 }
 
-main #register-container form input:not([disabled])[type=submit]:hover{
+
+
+main #register-container form #register-input:hover{
     background-color: var(--hover-color);
     cursor: pointer;
 }

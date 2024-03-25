@@ -88,7 +88,7 @@ avatars.forEach(element => {
     img.addEventListenerFnc("click", function () {
         basic.classRemoverArray(availableAvatars, "selected")
         img.addClass("selected")
-        userImg.setSrc(`../${element.src}`)
+        userImg.setSrc(element.src)
         checkFormValidity()
     })
 });
@@ -120,15 +120,16 @@ function checkFormValidity() {
         firstName: firstNameInput.getValue(),
         lastName: lastNameInput.getValue(),
         email: emailInput.getValue(),
-        img: userImg.getAttribute("src"),
+        img: `..${userImg.getAttribute("src")}`,
         role: roleSelect.getValue(),
         gender: genderSelect.getValue()
     }
     // Check if any value has changed from initial values
     const isChanged = Object.keys(editedUser).some(key => {
+        console.log(editedUser[key], currentValues[key], editedUser[key] !== currentValues[key])
         return editedUser[key] !== currentValues[key];
     })
-
+    console.log(isChanged)
     // Enable or disable submit button based on whether any value has changed
     if (isChanged) {
         saveButton.removeAttribute("disabled")

@@ -192,17 +192,9 @@ export function childRemover(parent){
         parent.removeChild(parent.firstChild)
     }
 }
-
+//Function that changes page window
 export function changeWindow(url){
     window.location.href = url
-}
-
-export function styleChanger(query, value){
-
-    query.forEach(element => {
-        element.style.borderColor = ""
-  
-    })
 }
 
 //function that removes all classes of given nodeList
@@ -213,16 +205,14 @@ export function classRemover(query, elClass){
   
     });
 }
-
+//Function that removes specific class from each element in array
 export function classRemoverArray(array, elClass){
     array.forEach(element => {
         element.element.classList.remove(elClass)
   
     });
 }
-
-
-
+//Function that removes all elements in the table exept the first one
 export function removeRowsExceptFirst(table) {  
 
     while (table.rows.length > 1) {

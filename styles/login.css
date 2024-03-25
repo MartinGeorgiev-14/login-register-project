@@ -43,6 +43,11 @@ main #login-register #login-container input[type=submit]{
     color: white;
 }
 
+main #login-register #login-container input:disabled[type=submit]{
+    filter: grayscale(50%);
+    cursor: not-allowed;
+}
+
 main #login-register #login-container input:not([disabled])[type=submit]:hover{
     background-color: var(--hover-color);
     cursor: pointer;
