@@ -85,7 +85,7 @@ main .buttons-container{
     display: flex;
     justify-self: center;
     list-style: none;
-    gap: 1rem;
+    gap: 1vw;
 }
 
 main .button-navigation .input-container{
@@ -119,9 +119,10 @@ main .button-navigation .input-container input[type="submit"]:hover{
 main .button-navigation .buttons-container li{
     background-color: var(--main-color);
     color: white;
-    padding: 0.2rem 0.7rem;
+    padding: 0.2vw 0.7vw;
     border-radius: 1rem;
     border: 2px solid transparent;
+    
 }
 
 main .button-navigation .buttons-container li:hover{
@@ -186,6 +187,7 @@ main #users-container #user-title{
 }
 
 main #users-container .user{
+
     border-bottom: solid 1px var(--border);
 }
 
@@ -194,11 +196,24 @@ main #users-container .user:hover{
 }
 
 main #users-container .user td{
-    padding: 1rem 0;
+    padding: 1vw 0rem;
+    
+}
+
+main #users-container .user td:first-child{
+    padding-left: 1vw;
+    
+    
+}
+
+main #users-container .user td:last-child{
+    padding-right: 1vw;
+    
 }
 
 main #users-container .user .user-info{
-    padding-left: 1rem;
+  
+    width: auto;
     display: flex;
     gap: 1rem;
 }
@@ -223,7 +238,7 @@ main #users-container .user .user-info ul{
 }
 
 main #users-container .user .user-roles{
-    width: 20%;
+    width: 20vw;
 }
 
 main #users-container .user .user-roles div{
@@ -253,12 +268,12 @@ main #users-container .user .user-roles p{
 }
 
 main #users-container .user .user-actions{
-    width: 20%;
+    width: 20vw;
 }
 
 main #users-container .user .user-actions div{
     display: flex;
-    gap: 1.2rem;
+    gap: 0.5rem;
 }
 
 main #users-container .user .user-actions div button{
@@ -284,3 +299,58 @@ main #users-container .user .user-actions div .remove:not(:disabled):hover{
 
 
 /* End of users containers */
+
+/* Start of responsive css */
+
+@media only screen and (max-width: 600px){
+
+    main #users-container .user .user-actions div{
+        gap: 0.3rem;
+
+    }
+
+    main #users-container .user td{
+        padding: 0.3rem 0.3rem;
+    }
+
+    main{
+        font-size: 0.8rem !important;
+    }
+
+    main button{
+        font-size: 0.8rem !important; 
+        
+    }
+
+    main button i{
+        font-size: 0.8rem;
+    }
+
+    main #users-container .user .user-info img{
+        width: 3rem;
+        height: 3rem;
+    }
+}
+
+@media only screen and (max-width: 420px){
+
+    main #users-container .user .user-actions div{
+        gap: 0.2rem;
+
+    }
+
+    main #users-container .user td{
+        padding: 0.2rem 0.2rem;
+    }
+
+    #users-container{
+        font-size: 0.6rem;
+    }
+
+    main #users-container .user .user-info img{
+        width: 3rem;
+        height: 3rem;
+    }
+}
+
+/* End of responsive css */

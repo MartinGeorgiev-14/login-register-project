@@ -30,6 +30,23 @@ header p{
 
 /* Edit container start */
 
+main #back-button{
+    position: absolute;
+    top: 7rem;
+    left: 2rem;
+    font-size: 1.2rem;
+    padding: 0.4rem;
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+    border-radius: 1rem;
+}
+
+main #back-button:hover{
+    cursor: pointer;
+    background-color: var(--hover-color);
+}
+
 #edit-container{
     border: solid 1px;
     border-color: var(--border);

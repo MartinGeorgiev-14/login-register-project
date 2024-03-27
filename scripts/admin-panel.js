@@ -49,11 +49,11 @@ resetBtn.addEventListenerFnc("click", async function () {
     let targets = elementManager.querySelectorAll(".buttons-container li")
     let targetLi = elementManager.querySelector('.buttons-container li[value="1"]');
 
-    selectedPage = 1
-    await call.getFromDB(defaultEndpoint, displayUsers)
-    await buttonsDisplayer(selectedPage,  await call.getFromDB(defaultEndpoint))
+    const data = await call.getFromDB(defaultEndpoint, displayUsers)
+    await buttonsDisplayer(selectedPage, data)
 
     activeURL = ["users?_page=", "&_per_page="]
+    selectedPage = 1
 
     usernameSort.setInnerHTML("Username")
     roleSort.setInnerHTML("User Role")
@@ -109,6 +109,7 @@ async function displayUsers(usersData, numOfEls) {
 
     //Removes all elements in the table exept 
     basic.removeRowsExceptFirst(table.getElement())
+    console.log(usersData)
     usersData.data.forEach(element => {
         const userTableRow = elementManager.createElement("tr")
         const userInfo = elementManager.createElement("td")
@@ -340,7 +341,7 @@ async function displayNineButtonsReverse(usersData) {
 
     for (let i = begin; i <= end; i++) {
         const li = elementManager.createElement("li")
-
+   
         switch (i) {
             case end - 8: //1
                 li.setInnerHTML("Previous")
@@ -365,6 +366,7 @@ async function displayNineButtonsReverse(usersData) {
                 break
             case selectedPage - 1:
                 li.addClass("selected")
+                console.log(selectedPage, i)
                 li.setValue(i + 1)
                 li.setInnerHTML(i + 1)
                 break
@@ -451,7 +453,7 @@ async function pageSwitcher(page){
 }
 
 async function buttonsDisplayer(selPage, data){
-        console.log(data, "ad")
+        
 
         if(data.last < 7){
             await displayLowNumButtons(data)

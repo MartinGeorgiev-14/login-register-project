@@ -102,6 +102,7 @@ export async function checkIndividualInfo(element, type){
     data.forEach(element => {
         if(element[type] === value){
             isFound = true
+           
         }
     });
 
