@@ -18,7 +18,7 @@ else {
     registerHandler()
 }
 
-function registerHandler() {
+async function registerHandler() {
 
     const usernameInput = elementManager.getElementById("username-input")
     const firstNameInput = elementManager.getElementById("first-name-input")
