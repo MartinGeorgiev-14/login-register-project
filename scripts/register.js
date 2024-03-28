@@ -11,12 +11,7 @@ const form = elementManager.querySelector("form")
 const session = JSON.parse(sessionStorage.getItem("activeUser"))
 const local = JSON.parse(localStorage.getItem("activeUser"))
 
-if (session || local) {
-    basic.changeWindow("../index.html")
-}
-else {
-    registerHandler()
-}
+await specific.checkIsUserActive(undefined, registerHandler, "../index.html")
 
 async function registerHandler() {
 

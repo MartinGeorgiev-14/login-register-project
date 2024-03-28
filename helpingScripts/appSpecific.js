@@ -312,12 +312,13 @@ export async function isUserActive(){
     const session = JSON.parse(sessionStorage.getItem("activeUser"))
     const local = JSON.parse(localStorage.getItem("activeUser"))
     const today = new Date()
- 
+    
 
-    if(!session && !local){
-        basic.changeWindow("../pages/login.html")
-    }
-    else if(local){ 
+    // if(!session && !local){
+    //     basic.changeWindow("../pages/login.html")
+    // }
+    // else 
+    if(local){ 
         //if saved expire date is higher than the current date it logs out the user
         if(new Date(local.expiry) >= today){
             logOutUser()
@@ -328,10 +329,16 @@ export async function isUserActive(){
         }
             
     }
-    else{
+    else if(session){
         const userId = await decrypt(session.user)
         return await call.getFromDB(`users/${userId}`)
     }
+    else{
+        return false
+    }
+       
+    
+
 }
 
 //Function that calculates elements per page
@@ -353,4 +360,18 @@ export function addDisabler(query){
         element.style.cursor = "not-allowed"
     })
 }
+//Function that checks if active user is saved in local or session storages. Based on that a certain function executes
+export async function checkIsUserActive(notFoundFnc, foundFnc,  page){
 
+    if (await isUserActive() && notFoundFnc) {
+        notFoundFnc()
+    }
+    else if(!await isUserActive() && foundFnc){
+        foundFnc()
+    }
+    else if(page){
+        basic.changeWindow(page)
+    }
+        
+    
+}

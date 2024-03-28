@@ -8,7 +8,6 @@ const elementsPerPage = 10
 const defaultEndpoint = `users?_page=${selectedPage}&_per_page=${elementsPerPage}`
 let activeURL = ["users?_page=", "&_per_page="]
 
- 
 const elementManager = basic.createBaseElement()
 const user = await specific.isUserActive()
 
