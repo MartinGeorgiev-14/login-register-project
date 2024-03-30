@@ -108,7 +108,15 @@ export async function getFromDB(value, func, numOfEls = 10){
 export async function deleteUser(userId, deletedUser, userDeleter){
     const url = `http://localhost:3000/users/${userId}`
     
+    const user = await getFromDB(userId) 
+
+  
+
     try {
+        if(user.role === "Admin"){
+            throw new error("You cannot delete admins")
+        }
+
         const response = await fetch(url, {
             method: "DELETE",
             headers:{

@@ -6,7 +6,7 @@ const elementManager = basic.createBaseElement()
 let user = await specific.isUserActive()
 
 
-await specific.checkIsUserActive(initializeIndex, "../pages/login.html")
+await specific.checkIsUserActive(initializeIndex, undefined, "../pages/login.html")
 
 
 function initializeIndex(){
