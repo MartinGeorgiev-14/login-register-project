@@ -4,7 +4,7 @@ A JavaScript project for login register and managin in admin panel. Users can re
 
 ##Table of content
 
-1. Pages
+1. [Pages](#pages)
     - [Main page](#main-page)
     - [Login page](#login-page)
     - [Register page](#register-page)
